@@ -6,6 +6,8 @@ window.onload = function() {
     data: {
       mounted: false,
 
+      title: "MotheR Яussia",
+      subtitle: "Coupe du monde de Football 2018",
       description: "<p>Plateforme de paris et pronostiques entre amis et collègues sur la coupe du monde de football 2018.</p><p>Créez votre groupe et invitez vos collègues et amis à pronostiquer tous les matchs !</p>"
     },
     

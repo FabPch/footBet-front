@@ -4,9 +4,16 @@ html, body {
     width: 100%;
     height: 100%;
 }
+
 body{
-    background: url(../img/fifa2018-min-min.jpg) center top no-repeat;
+    background: url(../img/bg-hexagon.jpg) center top no-repeat;
     background-size: cover;
+    overflow: hidden;
+}
+
+* {
+    position: relative;
+    z-index: 1;
 }
 
 h1, h2, h3, h4, h5, h6, .lead {
@@ -14,17 +21,53 @@ h1, h2, h3, h4, h5, h6, .lead {
 }
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     font-family: 'Ruslan Display', Times New Roman, Serif;
+    font-size: 50%;
 }
 
 footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     text-align: center;
     color: #F0F0F0;
 }
+
+.hide {
+    display: none;
+}
+
+.inner-col {
+    padding: 10px;
+}
+
+.row.full-height, .row.full-height > * {
+    height: 100%;
+}
+
+.panel-dark {
+    background: #0F0F0F;
+    opacity: .95;
+    color: #F0F0F0;
+}
+
+.panel-dark h1 {
+    font-size: 2.2rem;
+}
+
+#bg-main {
+    background: url(../img/fifa2018-min-min.jpg) center top no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    z-index: 0;
+}
+
 .loader {
     width: 100%;
     height: 100%;
     background: url(/assets/img/football_loader.gif) no-repeat center center #FFF;
-}
-.hide {
-    display: none;
 }
