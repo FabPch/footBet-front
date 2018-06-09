@@ -1,4 +1,4 @@
-# BEGIN Security
+# BEGIN All Security
 #AIOWPS_BASIC_HTACCESS_RULES_START
 <Files .htaccess>
 <IfModule mod_authz_core.c>
@@ -11,37 +11,7 @@ Deny from all
 </Files>
 ServerSignature Off
 LimitRequestBody 10240000
-<Files wp-config.php>
-<IfModule mod_authz_core.c>
-Require all denied
-</IfModule>
-<IfModule !mod_authz_core.c>
-Order deny,allow
-Deny from all
-</IfModule>
-</Files>
-#AIOWPS_BASIC_HTACCESS_RULES_END
-#AIOWPS_PINGBACK_HTACCESS_RULES_START
-<Files xmlrpc.php>
-<IfModule mod_authz_core.c>
-Require all denied
-</IfModule>
-<IfModule !mod_authz_core.c>
-Order deny,allow
-Deny from all
-</IfModule>
-</Files>
-#AIOWPS_PINGBACK_HTACCESS_RULES_END
-#AIOWPS_DEBUG_LOG_BLOCK_HTACCESS_RULES_START
-<Files debug.log>
-<IfModule mod_authz_core.c>
-Require all denied
-</IfModule>
-<IfModule !mod_authz_core.c>
-Order deny,allow
-Deny from all
-</IfModule>
-</Files>
+
 #AIOWPS_DEBUG_LOG_BLOCK_HTACCESS_RULES_END
 #AIOWPS_IP_BLACKLIST_START
 <IfModule !mod_authz_core.c>
@@ -173,9 +143,9 @@ RedirectMatch 403 admin\.webring\.docs\.
 Redirectmatch 403 Table\/Latest\/index\.
 </IfModule>
 #AIOWPS_ADVANCED_CHAR_STRING_FILTER_END
-# END All In One WP Security
+# END All Security
 
-# BEGIN WordPress
+# BEGIN Website
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
@@ -184,5 +154,3 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
-
-# END WordPress
