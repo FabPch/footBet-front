@@ -4,8 +4,11 @@ window.onload = function() {
   var cmpWelcome = new Vue({
     el: elt,
     data: {
-      message1: "Plateforme de paris et pronostiques entre amis et collègues sur la coupe du monde de football 2018.",
-      message2: "Créez votre groupe et invitez vos collègues et amis à pronostiquer la coupe du monde fe football 2018 !"
+      mounted: false,
+
+      title: "MotheR Яussia",
+      subtitle: "Coupe du monde de Football 2018",
+      description: "<p>Plateforme de paris et pronostiques entre amis et collègues sur la coupe du monde de football 2018.</p><p>Créez votre groupe et invitez vos collègues et amis à pronostiquer tous les matchs !</p>"
     },
     
     // Default lifecycle events
@@ -14,7 +17,7 @@ window.onload = function() {
     beforeMount: function(evt) {},
     mounted: function(evt) {
       $('.loader').hide(750);
-      $(elt).show();
+      this.mounted = true;
     },
     beforeUpdate: function(evt) {},
     updated: function(evt) {},
