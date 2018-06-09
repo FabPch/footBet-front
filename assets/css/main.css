@@ -44,10 +44,16 @@ footer {
     height: 100%;
 }
 
-.panel-dark {
-    background: #0F0F0F;
-    opacity: .95;
+.panel-darkest, .panel-dark {
     color: #F0F0F0;
+}
+
+.panel-darkest {
+    background-color: rgba(47,47,47,.95);
+}
+
+.panel-dark {
+    background-color: rgba(47,47,47,.85);
 }
 
 .panel-dark h1 {

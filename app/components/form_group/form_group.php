@@ -1,6 +1,5 @@
-
-<div class="jumbotron" id="cmp-welcome" style="margin-top:50px;" v-show="mounted">
-  <h1 class="display-4">
+<div class="jumbotron panel-dark" id="cmp-welcome" v-show="mounted">
+  <h1>
       {{title}}
   </h1>
   <p class="lead">{{subtitle}}</p>
