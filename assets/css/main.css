@@ -60,6 +60,11 @@ footer {
     font-size: 2.2rem;
 }
 
+.error-404 {
+    background: #FFF url(/assets/img/404.png) no-repeat center center;
+    background-size: contain;
+}
+
 #bg-main {
     background: url(../img/fifa2018-min-min.jpg) center top no-repeat;
     background-size: cover;

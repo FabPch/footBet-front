@@ -10,7 +10,11 @@
         "/group" => "group"
     );
 
-    $page = array_key_exists($clean_request_uri, $routes) ? $routes[$clean_request_uri] : 'homepage';
+    $page = array_key_exists($clean_request_uri, $routes) ? $routes[$clean_request_uri] : '404';
+
+    if($page == '404') {
+        http_response_code(404);
+    }
 
     include 'app/templates/default_0.php';
     include 'app/pages/' . $page . '.php';
