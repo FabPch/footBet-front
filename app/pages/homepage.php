@@ -1,27 +1,7 @@
 <div class="loader"></div>
+
 <div class="row full-height">
-  <div class="col-3 panel-darkest main-nav-panel">
-    <div class="inner-col">
-      <h1>
-        MOTHER
-        <span class="red">RUSSIA</span>
-      </h1>
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <?php new IncComponent("nav_main"); ?>
   <div class="col-9 main-container">
     <div class="container">
       <?php new IncComponent("welcome"); ?>

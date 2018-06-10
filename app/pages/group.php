@@ -1,18 +1,10 @@
-<div class="loader">
-</div>
+<div class="loader"></div>
 
 <div class="row full-height">
-    <div class="col panel-dark">
-        <div class="inner-col">
-            <h1 class="display-4">
-                <?= WEB_TITLE ?>
-                <small><?= WEB_SUBTITLE ?></small>
-            </h1>
-        </div>
+  <?php new IncComponent("nav_main"); ?>
+  <div class="col-9 main-container">
+    <div class="container">
+      <?php new IncComponent("form_group"); ?>
     </div>
-    <div class="col-9">
-        <div class="inner-col">
-            <?php new IncComponent("form_group"); ?>
-        </div>
-    </div>
+  </div>
 </div>
