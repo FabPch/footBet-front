@@ -14,6 +14,7 @@ window.onload = function () {
       groupName: "",
       email: "",
       password: "",
+      confirmPassword: "",
       nickname: ""
     },
 
@@ -39,7 +40,20 @@ window.onload = function () {
 
     // Custom methods
     methods: {
-      clickedLinkSignUp: function (evt) {
+      validGroupName: function(){
+        return isValueValid(this.groupName, 'textfield');
+      },
+      validEmail: function(){
+        return isValueValid(this.email, 'email');
+      },
+      validPassword:  function(){
+        return isValueValid(this.password, 'password');
+      },
+      validPasswords: function () {
+        return isValueValid(this.password, 'password') && this.password == this.confirmPassword
+      },
+
+      clickedLinkSignUp : function (evt) {
         this.modeSignUp = true;
         this.modeSignIn = false;
         return false;
