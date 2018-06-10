@@ -1,6 +1,6 @@
 <div class="loader"></div>
 <div class="row full-height">
-  <div class="col panel-darkest main-nav-panel">
+  <div class="col-2 panel-darkest main-nav-panel">
     <div class="inner-col">
       <h1>
         MOTHER

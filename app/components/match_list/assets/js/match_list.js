@@ -5,6 +5,8 @@ jQuery(document).ready(function(){
     data: {
       readyToShow: false,
 
+      previousDate: '',
+
       teams: [],
       fixtures: []
     },
@@ -45,6 +47,23 @@ jQuery(document).ready(function(){
         });
       },
 
+      isNewDate: function(fixture) {
+        var d = new Date(fixture.date);
+        var dDay = d.getDay().toString().length === 1 ? '0'+d.getDay() : d.getDay();
+        var dMonth = d.getMonth().toString().length === 1 ? '0'+d.getMonth() : d.getMonth();
+        var dYear = d.getFullYear();
+
+        var currentDate = dDay + dMonth + dYear;
+
+        if(currentDate !== this.previousDate) {
+          this.previousDate = currentDate;
+          return true;
+        } else {
+          this.previousDate = currentDate;
+          return false;
+        }
+      },
+
       getTeamFlag: function(teamFullName) {
         var currentTeam = this.teams.filter(function( team ) {
           return team.name == teamFullName;
@@ -54,13 +73,24 @@ jQuery(document).ready(function(){
       },
       getReadableDate: function(fixture) {
         var d = new Date(fixture.date);
-        var dDay = d.getDay().toString().length === 1 ? '0'+d.getDay() : d.getDay();
+        var dDate = d.getDate().toString().length === 1 ? '0'+d.getDate() : d.getDate();
+        var dMonth = (d.getMonth()+1).toString().length === 1 ? '0'+(d.getMonth()+1) : (d.getMonth()+1);
+        var dYear = d.getFullYear();
+
+        var days = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+        var dDayWord = days[d.getDay()];
+
+        return dDayWord + ' ' + dDate + '/' + dMonth + '/' + dYear;
+      },
+      getReadableDateTime: function(fixture) {
+        var d = new Date(fixture.date);
+        var dDate = d.getDate().toString().length === 1 ? '0'+d.getDate() : d.getDate();
         var dMonth = d.getMonth().toString().length === 1 ? '0'+d.getMonth() : d.getMonth();
         var dYear = d.getFullYear();
 
         var dHour = d.getHours();
         var dMinutes = d.getMinutes().toString().length === 1 ? '0'+d.getMinutes() : d.getMinutes();
-        return 'Le ' + dDay + '/' + dMonth + '/' + dYear + ' à ' + d.getHours() + 'h' + dMinutes;
+        return 'Le ' + dDate + '/' + dMonth + '/' + dYear + ' à ' + d.getHours() + 'h' + dMinutes;
       }
     }
   });

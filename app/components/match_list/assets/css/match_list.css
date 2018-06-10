@@ -5,8 +5,34 @@
 .welcome-match-list .card {
     cursor: pointer;
     border: none;
+    background: none;
+}
+
+.welcome-match-list .card .goals {
+    font-weight: bolder;
 }
 
 .welcome-match-list .card [class^='col-'] {
     text-align: center;
+}
+
+.welcome-match-list .col-12 {
+    margin-top: 25px;
+    margin-bottom: -10px;
+}
+
+.welcome-match-list .col-12 h5 {
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-match-list .col-12 h5 span {
+    background: rgb(240, 240, 240);
+    padding-right: 10px;
+}
+
+.welcome-match-list .col-12 hr {
+    margin-top: -20px;
+    position: relative;
+    z-index: 1;
 }

@@ -71,6 +71,15 @@ a:hover, a:focus, a:active {
     color: rgba(27, 27, 27, 1);
 }
 
+.popover .popover-header {
+    color: rgba(27, 27, 27, 1);
+    text-align: center;
+}
+
+.popover .popover-body {
+    text-align: center;
+}
+
 footer {
     position: fixed;
     bottom: 0;
