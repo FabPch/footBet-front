@@ -1,5 +1,5 @@
 window.onload = function () {
-  var elt = '#cmp-welcome';
+  var elt = '#cmp-form-group';
 
   var vm = new Vue({
     el: elt,

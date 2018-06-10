@@ -1,0 +1,12 @@
+#cmp-match-list {
+    margin-bottom: 50px;
+}
+
+.welcome-match-list .card {
+    cursor: pointer;
+    border: none;
+}
+
+.welcome-match-list .card [class^='col-'] {
+    text-align: center;
+}
