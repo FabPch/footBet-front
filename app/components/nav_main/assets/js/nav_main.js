@@ -16,7 +16,7 @@ jQuery(document).ready(function(){
         },
         {
           "label": "Créer mon groupe",
-          "link": "/sign_in",
+          "link": "/group",
         },
         {
           "label": "Se connecter",
