@@ -7,7 +7,8 @@
 
     $routes = array(
         "/" => "homepage",
-        "/group" => "group"
+        "/group" => "group",
+        "/login" => "login"
     );
 
     $page = array_key_exists($clean_request_uri, $routes) ? $routes[$clean_request_uri] : '404';
