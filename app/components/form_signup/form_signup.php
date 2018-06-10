@@ -1,8 +1,14 @@
-<div class="jumbotron panel-dark" id="cmp-form-login" v-show="mounted">
+<div class="jumbotron panel-dark" id="cmp-form-signup" v-show="mounted">
   <h1>
     {{title}}
   </h1>
   <form>
+      <div class="form-group row">
+          <label for="inputPseudo" class="col-sm-2 col-form-label">Pseudo</label>
+          <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputPseudo" placeholder="ex: ayayay" v-model="pseudo">
+          </div>
+      </div>
     <div class="form-group row">
       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
@@ -15,30 +21,26 @@
         <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" v-model="password">
       </div>
     </div>
-      <div class="form-group row">
-          <div class="col-sm-2"></div>
+
+      <div class="form-group row" v-show="modeSignUp">
+          <label for="inputConfirmPassword" class="col-sm-2 col-form-label">Confirmation du mot de passe</label>
           <div class="col-sm-10">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck1">
-                  <label class="form-check-label" for="gridCheck1">
-                      Se souvenir de moi
-                  </label>
-              </div>
+              <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirmation du mot de passe" v-model="confirmPassword">
           </div>
       </div>
 
       <div class="form-group row">
           <div class="col-sm-2"></div>
             <div class="col-sm-10">
-              Vous n'avez pas encore de compte ?
-              <a href="#" v-on:click="clickedLinkSignUp">Inscrivez-vous</a>
+              Vous avez deja un compte ?
+              <a href="#" v-on:click="clickedLinkSignIn">Connectez-vous</a>
             </div>
           </div>
       </div>
 
     <div class="form-group row">
       <div class="col text-center">
-        <button type="submit" class="btn btn-primary" v-on:click="submitLogin">Se connecter</button>
+        <button type="submit" class="btn btn-primary" v-on:click="submitSignup">Inscription</button>
       </div>
     </div>
 

@@ -8,6 +8,7 @@
     $routes = array(
         "/" => "homepage",
         "/group" => "group",
+        "/sign_up" => "signup",
         "/sign_in" => "login"
     );
 
