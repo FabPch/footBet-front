@@ -1,34 +1,67 @@
-window.onload = function() {
+window.onload = function () {
   var elt = '#cmp-welcome';
-  
-  var cmpWelcome = new Vue({
+
+  var vm = new Vue({
     el: elt,
     data: {
       mounted: false,
+      isConnected: false,
+      modeSignUp: false,
+      modeSignIn: false,
 
-      title: "MotheR Яussia",
-      subtitle: "Coupe du monde de Football 2018",
-      description: "<p>Plateforme de paris et pronostiques entre amis et collègues sur la coupe du monde de football 2018.</p><p>Créez votre groupe et invitez vos collègues et amis à pronostiquer tous les matchs !</p>"
+      title: "Création d'un groupe",
+
+      groupName: "",
+      email: "",
+      password: "",
+      nickname: ""
     },
-    
+
     // Default lifecycle events
-    beforeCreate: function(evt) {},
-    created: function(evt) {},
-    beforeMount: function(evt) {},
-    mounted: function(evt) {
+    beforeCreate: function (evt) {
+    },
+    created: function (evt) {
+    },
+    beforeMount: function (evt) {
+    },
+    mounted: function (evt) {
       $('.loader').hide(750);
       this.mounted = true;
     },
-    beforeUpdate: function(evt) {},
-    updated: function(evt) {},
-    beforeDestroy: function(evt) {},
-    destroyed: function(evt) {},
-      
+    beforeUpdate: function (evt) {
+    },
+    updated: function (evt) {
+    },
+    beforeDestroy: function (evt) {
+    },
+    destroyed: function (evt) {
+    },
+
     // Custom methods
     methods: {
-      submitCreateGroup: function(evt) {
+      clickedLinkSignUp: function (evt) {
+        this.modeSignUp = true;
+        this.modeSignIn = false;
+        return false;
+      },
+      clickedLinkSignIn: function (evt) {
+        this.modeSignUp = false;
+        this.modeSignIn = true;
+        return false;
+      },
+
+      submitCreateGroup: function (evt) {
         console.log(evt);
-      }
+        return false;
+      },
+      submitSignUpAndCreateGroup: function (evt) {
+        console.log(evt);
+        return false;
+      },
+      submitSignInAndCreateGroup: function (evt) {
+        console.log(evt);
+        return false;
+      },
     }
-  });  
+  });
 }
