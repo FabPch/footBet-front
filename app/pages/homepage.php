@@ -1,6 +1,6 @@
 <div class="loader"></div>
 <div class="row full-height">
-  <div class="col-2 panel-darkest main-nav-panel">
+  <div class="col-3 panel-darkest main-nav-panel">
     <div class="inner-col">
       <h1>
         MOTHER
@@ -22,7 +22,7 @@
       </ul>
     </div>
   </div>
-  <div class="col-10 main-container">
+  <div class="col-9 main-container">
     <div class="container">
       <?php new IncComponent("welcome"); ?>
       <?php new IncComponent("match_list"); ?>
