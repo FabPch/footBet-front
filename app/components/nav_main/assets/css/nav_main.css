@@ -1,0 +1,13 @@
+.main-nav-panel {
+    padding-top: 35px;
+    -webkit-box-shadow: 1px 0 10px 0 rgba(0, 0, 0, .4);
+    box-shadow: 1px 0 10px 0 rgba(0, 0, 0, .4);
+    z-index: 2;
+}
+
+.main-nav-panel h1 {
+    font-size: 48px;
+    line-height: 42px;
+    padding: 0 16px;
+    margin-bottom: 70px;
+}
