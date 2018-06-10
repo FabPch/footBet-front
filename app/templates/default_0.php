@@ -28,6 +28,7 @@
         <script src="/assets/js/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
+        <script src="/assets/js/utils.js"></script>
 	</head>
 
 	<body>
