@@ -23,6 +23,8 @@
 		<!-- production version, optimized for size and speed -->
         <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
         <script src="/assets/js/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
 	</head>
 
 	<body>

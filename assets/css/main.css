@@ -8,7 +8,7 @@ html, body {
 body{
     background: url(../img/bg-hexagon.jpg) center top no-repeat;
     background-size: cover;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 * {
@@ -24,12 +24,17 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     font-size: 50%;
 }
 
+.btn, input {
+    border-radius: 0;
+}
+
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
     color: #F0F0F0;
+    z-index: 0;
 }
 
 .hide {
@@ -44,8 +49,23 @@ footer {
     height: 100%;
 }
 
+.jumbotron {
+    padding: 10px 20px;
+    border-radius: 0;
+}
+
+.main-nav-panel {
+    -webkit-box-shadow: 1px 0 10px 0 rgba(0,0,0,.4);
+    box-shadow: 1px 0 10px 0 rgba(0,0,0,.4);
+    z-index: 2;
+}
+
 .panel-darkest, .panel-dark {
     color: #F0F0F0;
+}
+
+.panel-lightest, .panel-light {
+    color: #0F0F0F;
 }
 
 .panel-darkest {
@@ -60,9 +80,27 @@ footer {
     font-size: 2.2rem;
 }
 
+.panel-lightest {
+    background-color: rgba(242,242,242, 1);
+}
+
+.panel-light {
+    background-color: rgba(232,232,232, 1);
+}
+
 .error-404 {
     background: #FFF url(/assets/img/404.png) no-repeat center center;
     background-size: contain;
+}
+
+.welcome-match-list h5 {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.welcome-match-list h5 .badge {
+    cursor: pointer;
+    border: solid 2px rgba(242,242,242, 1);
 }
 
 #bg-main {
