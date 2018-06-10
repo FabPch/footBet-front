@@ -22,7 +22,7 @@
       </div>
     </div>
 
-      <div class="form-group row" v-show="modeSignUp">
+      <div class="form-group row">
           <label for="inputConfirmPassword" class="col-sm-2 col-form-label">Confirmation du mot de passe</label>
           <div class="col-sm-10">
               <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirmation du mot de passe" v-model="confirmPassword">
