@@ -71,6 +71,18 @@ a:hover, a:focus, a:active {
     color: rgba(27, 27, 27, 1);
 }
 
+.btn-dark {
+    background-color: rgba(70,70,70,1);
+    border: solid 2px rgba(70,70,70,1);
+    color: rgba(240, 240, 240, 1);
+}
+
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active {
+    background-color: rgba(240, 240, 240, 1);
+    border: solid 2px rgba(70,70,70,1);
+    color: rgba(70,70,70,1);
+}
+
 .popover .popover-header {
     color: rgba(27, 27, 27, 1);
     text-align: center;

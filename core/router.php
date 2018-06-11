@@ -9,7 +9,8 @@
         "/" => "homepage",
         "/group" => "group",
         "/sign_up" => "signup",
-        "/sign_in" => "login"
+        "/sign_in" => "login",
+        "/my/predictions" => "my/predictions"
     );
 
     $page = array_key_exists($clean_request_uri, $routes) ? $routes[$clean_request_uri] : '404';

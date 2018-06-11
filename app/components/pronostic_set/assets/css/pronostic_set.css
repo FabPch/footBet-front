@@ -1,0 +1,147 @@
+.pronostic-set .card {
+    margin-top: 20px;
+    background: rgba(240, 240, 240, 1);
+    border: 2px solid rgba(70,70,70,1);
+    border-radius: 0;
+}
+
+.pronostic-set .card:not(.edit) {
+    cursor: pointer;
+}
+
+.pronostic-set .card.done {
+    background: rgba(70,70,70,1);
+    color: #FFF;
+}
+
+.pronostic-set .card .card-hover {
+    display:none;
+    position: absolute;
+    background: rgba(0,0,0,0.7) url(/assets/img/edit.png) no-repeat center center;
+    background-size: 20%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 2;
+    -webkit-transition: all 750ms ease-in-out;
+    -moz-transition: all 750ms ease-in-out;
+    -ms-transition: all 750ms ease-in-out;
+    -o-transition: all 750ms ease-in-out;
+    transition: all 750ms ease-in-out;
+}
+
+.pronostic-set .card:hover:not(.ended):not(.edit) .card-hover {
+    display: block;
+}
+
+.pronostic-set .card .card-group {
+    position: absolute;
+    background: rgba(240, 240, 240, 1);
+    border: 2px solid rgba(70,70,70,1);
+    left: 50%;
+    padding: 0;
+    margin-left: -20px;
+    margin-top: -20px;
+    z-index: 3;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+}
+.pronostic-set .card .card-group span {
+    width: 100%;
+    padding-top: 6px;
+}
+.pronostic-set .card.done .card-group {
+    background: rgba(70,70,70,1);
+}
+
+.pronostic-set .card .card-group-hover {
+    display: none;
+    position: absolute;
+    background-color: rgba(0,0,0,0.7);
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+    width: 40px;
+    height: 40px;
+    z-index: 4;
+    -webkit-transition: all 750ms ease-in-out;
+    -moz-transition: all 750ms ease-in-out;
+    -ms-transition: all 750ms ease-in-out;
+    -o-transition: all 750ms ease-in-out;
+    transition: all 750ms ease-in-out;
+}
+.pronostic-set .card:hover:not(.ended):not(.edit) .card-group-hover {
+    display: block;
+}
+
+.pronostic-set .card .goals {
+    font-weight: bolder;
+}
+
+.pronostic-set .post-card {
+    z-index: 0;
+}
+.pronostic-set .post-card .remaining-time {
+    width: 50%;
+    left: 50%;
+    position: absolute;
+    margin: -5px 0 0 -25%;
+    border: solid 2px rgba(0,0,0,0.7);
+}
+
+.pronostic-set .card [class^='col-'] {
+    text-align: center;
+}
+
+.pronostic-set .card .card-body .prediction-icon, .pronostic-set .card .card-body .ball-icon {
+    width: 24px;
+    position: absolute;
+    left: -2px;
+}
+.pronostic-set .card .card-body [class^='result-'] {
+    font-weight: bolder;
+}
+
+.pronostic-set .card.edit span[class^='prediction-'],
+.pronostic-set .card input[type='text'] {
+    display: none;
+}
+
+.pronostic-set .card span[class^='prediction-'],
+.pronostic-set .card.edit input[type='text'] {
+    display: inline;
+}
+
+.pronostic-set .card form > button {
+    display: none;
+    position: absolute;
+    bottom: 2px;
+    right: -20px;
+    padding: 2px 2px;
+    height: 30px;
+    border-radius: 1rem;
+}
+.pronostic-set .card.edit form > button {
+    display: inline;
+}
+.pronostic-set .col-12 {
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.pronostic-set .col-12 h5 {
+    position: relative;
+    z-index: 2;
+}
+
+.pronostic-set .col-12 h5 span {
+    background: rgb(240, 240, 240);
+    padding-right: 10px;
+}
+
+.pronostic-set .col-12 hr {
+    margin-top: -20px;
+    position: relative;
+    z-index: 1;
+}
