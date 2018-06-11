@@ -7,6 +7,9 @@ jQuery(document).ready(function(){
 
       previousDate: '',
 
+      countdowns: {},
+      countdownsString: {},
+
       teams: [],
       fixtures: []
     },
@@ -16,6 +19,7 @@ jQuery(document).ready(function(){
     created: function(evt) {},
     beforeMount: function(evt) {},
     mounted: function(evt) {
+      window.ddata = this; // TODO : remove after testing
       this.getAllTeams();
     },
     beforeUpdate: function(evt) {},
@@ -40,6 +44,19 @@ jQuery(document).ready(function(){
           {headers: {'X-Auth-Token': '8aa99a3f8ed74cd3862fd8282585bc95'}}
         ).then(function(response) {
           this.fixtures = response.body.fixtures;
+          for(var i=0; i<this.fixtures.length; i++) {
+            var fixture = this.fixtures[i];
+
+            if(fixture.date) {
+              this.countdowns[this.getFixtureId(fixture)] = new Date(fixture.date);
+              this.countdownsString[this.getFixtureId(fixture)] = this.getRemainingTime(this.countdowns[this.getFixtureId(fixture)]);
+            }
+
+            // Last loop
+            if(i === this.fixtures.length - 1) {
+              this.updateCountdowns();
+            }
+          }
         }).finally(function(){
           $('[data-toggle="popover"]').popover();
           $('.loader').hide(750);
@@ -87,7 +104,6 @@ jQuery(document).ready(function(){
         });
         return (currentTeam[0]) ? currentTeam[0] || {} : {};
       },
-
       getTeamFlag: function(teamFullName) {
         var currentTeam = this.teams.filter(function( team ) {
           return team.name == teamFullName;
@@ -95,6 +111,61 @@ jQuery(document).ready(function(){
         var flag = (currentTeam[0]) ? currentTeam[0].crestUrl || '' : '';
         return flag;
       },
+
+      getFixtureId: function(fixture) {
+        return fixture._links.self.href.replace('http://api.football-data.org/v1/fixtures/','');
+      },
+
+      updateCountdowns: function() {
+        var that = this;
+        setInterval(function(){
+          for (var fixtureId in that.countdowns){
+            if (that.countdowns.hasOwnProperty(fixtureId)) {
+              var dNew = new Date(that.countdowns[fixtureId]-1);
+              var dStringNew = that.getRemainingTime(dNew);
+              that.$set(that.countdowns, fixtureId, dNew);
+              that.$set(that.countdownsString, fixtureId, dStringNew);
+              $('.remaining-time[data-fixture-id="' + fixtureId + '"]').text(dStringNew);
+            }
+          }
+        }, 1000);
+      },
+
+      getRemainingTimeFromFixture: function(fixture) {
+        var d = new Date(fixture.date);
+        return this.getRemainingTime(d);
+      },
+
+      getRemainingTime: function(date) {
+        var d = date;
+        var dn = new Date();
+        var finalText = "";
+
+        var delta = Math.abs(d - dn) / 1000;
+
+        var days = Math.floor(delta / 86400);
+        delta -= days * 86400;
+        if(days > 0) {
+          finalText += days + "j ";
+        }
+
+        var hours = Math.floor(delta / 3600) % 24;
+        delta -= hours * 3600;
+        finalText += hours.toString().length===1 ? "0"+hours : hours;
+        finalText += "h";
+
+        var minutes = Math.floor(delta / 60) % 60;
+        delta -= minutes * 60;
+        finalText += minutes.toString().length===1 ? "0"+minutes : minutes;
+        finalText += " ";
+
+        var seconds = Math.floor(delta % 60);  // in theory the modulus is not required
+        finalText += seconds.toString().length===1 ? "0"+seconds : seconds;
+        finalText += "s";
+
+        return finalText;
+      },
+
       getReadableDate: function(fixture) {
         var d = new Date(fixture.date);
         var dDate = d.getDate().toString().length === 1 ? '0'+d.getDate() : d.getDate();

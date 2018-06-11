@@ -4,7 +4,8 @@
 }
 .pronostic-set .card .card-hover {
     position: absolute;
-    background-color: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.7) url(/assets/img/edit.png) no-repeat center center;
+    background-size: 20%;
     width: 100%;
     height: 100%;
     margin: 0;

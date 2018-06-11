@@ -17,7 +17,8 @@
                 <img :src="'http://placeholder.pics/svg/40/DEDEDE/DEDEDE/A'" class="rounded-circle">
             </div>
             <div class="card-body">
-              <div class="row">
+              <form class="row" method="POST">
+                <input type="hidden" :value="getFixtureId(fixture)" name="fixtureId"/>
                 <div class="col-6">
                   {{ getTeam(fixture.homeTeamName).code }}<br>
                   <img :src="getTeamFlag(fixture.homeTeamName)" style="width: 50px;"/><br>
@@ -32,8 +33,11 @@
                   {{ fixture.result.goalsAwayTeam }}
                   </span>
                 </div>
-              </div>
+              </form>
             </div>
+          </div>
+          <div class="post-card">
+            <div class="remaining-time" :data-fixture-id="getFixtureId(fixture)">{{ countdownsString[getFixtureId(fixture)] }}</div>
           </div>
         </div>
       </template>
