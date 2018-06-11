@@ -6,6 +6,7 @@ jQuery(document).ready(function(){
       readyToShow: false,
 
       previousDate: '',
+      editCard: '',
 
       countdowns: {},
       countdownsString: {},
@@ -37,6 +38,7 @@ jQuery(document).ready(function(){
        */
       goEdit: function(event){
         var fixtureId = $(event.currentTarget).attr('data-fixture-id');
+        this.editCard = fixtureId;
         console.log(fixtureId);
       },
 

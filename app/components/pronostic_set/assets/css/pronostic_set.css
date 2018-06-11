@@ -1,13 +1,18 @@
 .pronostic-set .card {
-    cursor: pointer;
     margin-top: 20px;
     background: rgba(240, 240, 240, 1);
     border: 2px solid rgba(0,0,0,.7);
     border-radius: 0;
 }
+
+.pronostic-set .card:not(.edit) {
+    cursor: pointer;
+}
+
 .pronostic-set .card.done {
     background: #FFF;
 }
+
 .pronostic-set .card .card-hover {
     display:none;
     position: absolute;
@@ -23,7 +28,8 @@
     -o-transition: all 750ms ease-in-out;
     transition: all 750ms ease-in-out;
 }
-.pronostic-set .card:hover .card-hover {
+
+.pronostic-set .card:hover:not(.ended):not(.edit) .card-hover {
     display: block;
 }
 
@@ -64,7 +70,7 @@
     -o-transition: all 750ms ease-in-out;
     transition: all 750ms ease-in-out;
 }
-.pronostic-set .card:hover .card-group-hover {
+.pronostic-set .card:hover:not(.ended):not(.edit) .card-group-hover {
     display: block;
 }
 
@@ -85,6 +91,25 @@
 
 .pronostic-set .card [class^='col-'] {
     text-align: center;
+}
+
+.pronostic-set .card .card-body .prediction-icon, .pronostic-set .card .card-body .ball-icon {
+    width: 24px;
+    position: absolute;
+    left: 0;
+}
+.pronostic-set .card .card-body [class^='result-'] {
+    font-weight: bolder;
+}
+
+.pronostic-set .card.edit span[class^='prediction-'],
+.pronostic-set .card input[type='text'] {
+    display: none;
+}
+
+.pronostic-set .card span[class^='prediction-'],
+.pronostic-set .card.edit input[type='text'] {
+    display: inline;
 }
 
 .pronostic-set .col-12 {
