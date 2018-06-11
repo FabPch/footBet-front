@@ -10,7 +10,7 @@
           <hr>
         </div>
         <div class="col-3" v-show="fixture.homeTeamName.length > 0">
-          <div class="card" :data-fixture-id="getFixtureId(fixture)" v-bind:class="{ edit: (editCard===getFixtureId(fixture))}">
+          <div class="card" :data-fixture-id="getFixtureId(fixture)" v-bind:class="{ edit: (editCard===getFixtureId(fixture)), ended: (fixture.status !== 'TIMED')}">
             <div class="card card-hover" v-on:click="goEdit" :data-fixture-id="getFixtureId(fixture)"></div>
             <div class="card-group-hover rounded-circle" v-on:click="goEdit" :data-fixture-id="getFixtureId(fixture)"></div>
             <div class="card-group rounded-circle text-center">
@@ -23,17 +23,11 @@
                 <!-- Row flags & team names -->
                 <div class="col-6 mb-3">
                   {{ getTeam(fixture.homeTeamName).code }}<br>
-                  <img :src="getTeamFlag(fixture.homeTeamName)" style="width: 50px;"/><br>
-                  <span class="goals" v-show="fixture.result.goalsHomeTeam !== null && fixture.result.goalsAwayTeam !== null">
-                  {{ fixture.result.goalsHomeTeam }}
-                  </span>
+                  <img :src="getTeamFlag(fixture.homeTeamName)" style="width: 50px;"/>
                 </div>
                 <div class="col-6 mb-3">
                   {{ getTeam(fixture.awayTeamName).code }}<br>
-                  <img :src="getTeamFlag(fixture.awayTeamName)" style="width: 50px;"/><br>
-                  <span class="goals" v-show="fixture.result.goalsHomeTeam !== null && fixture.result.goalsAwayTeam !== null">
-                  {{ fixture.result.goalsAwayTeam }}
-                  </span>
+                  <img :src="getTeamFlag(fixture.awayTeamName)" style="width: 50px;"/>
                 </div>
 
                 <!-- Row predictions -->
@@ -48,13 +42,14 @@
                 </div>
 
                 <!-- Row match results -->
-                <div class="col-6">
+                <div class="col-6" v-show="fixture.result.goalsHomeTeam !== null && fixture.result.goalsAwayTeam !== null">
                   <img src="/assets/img/ball.png" class="ball-icon" alt="Ball icon"/>
-                  <span class="result-home">3</span>
+                  <span class="result-home">{{ fixture.result.goalsHomeTeam }}</span>
                 </div>
-                <div class="col-6">
-                  <span class="result-away">2</span>
+                <div class="col-6" v-show="fixture.result.goalsHomeTeam !== null && fixture.result.goalsAwayTeam !== null">
+                  <span class="result-away">{{ fixture.result.goalsAwayTeam }}</span>
                 </div>
+                <button class="btn btn-sm btn-dark" role="submit">OK</button>
               </form>
             </div>
           </div>
