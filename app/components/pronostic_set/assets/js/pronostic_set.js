@@ -32,9 +32,11 @@ jQuery(document).ready(function(){
     methods: {
 
       /**
-       *  goEdit(event)
-       *  Method binded from frontend
-       *  Shows editing mode for a specific card
+       * goEdit(event)
+       * @param event
+       *
+       * Method binded from frontend
+       * Shows editing mode for a specific card
        */
       goEdit: function(event){
         var fixtureId = $(event.currentTarget).attr('data-fixture-id');
@@ -46,7 +48,7 @@ jQuery(document).ready(function(){
        *  getAllTeams()
        *  Call ajax API /v1/competitions/467/teams
        */
-      getAllTeams: function(evt) {
+      getAllTeams: function() {
         this.$http.get(
           'http://api.football-data.org/v1/competitions/467/teams',
           {headers: {'X-Auth-Token': '8aa99a3f8ed74cd3862fd8282585bc95'}}
@@ -86,6 +88,22 @@ jQuery(document).ready(function(){
         });
       },
 
+      /**
+       * submitPrediction()
+       * @param event
+       * Method binded by submit prediction event
+       */
+      submitPrediction: function(event) {
+        console.log(event);
+      },
+
+      /**
+       * isNewDate()
+       * @param fixture
+       * @returns {boolean}
+       *
+       * Returns if fixture has a new date (versus previous fixture one)
+       */
       isNewDate: function(fixture) {
         var d = new Date(fixture.date);
         var dDay = d.getDay().toString().length === 1 ? '0'+d.getDay() : d.getDay();
@@ -103,23 +121,13 @@ jQuery(document).ready(function(){
         }
       },
 
-      isNewDate: function(fixture) {
-        var d = new Date(fixture.date);
-        var dDay = d.getDay().toString().length === 1 ? '0'+d.getDay() : d.getDay();
-        var dMonth = d.getMonth().toString().length === 1 ? '0'+d.getMonth() : d.getMonth();
-        var dYear = d.getFullYear();
-
-        var currentDate = dDay + dMonth + dYear;
-
-        if(currentDate !== this.previousDate) {
-          this.previousDate = currentDate;
-          return true;
-        } else {
-          this.previousDate = currentDate;
-          return false;
-        }
-      },
-
+      /**
+       * getTeam()
+       * @param teamFullName
+       * @returns {any}
+       *
+       * Returns full team object from full string team name
+       */
       getTeam: function(teamFullName) {
         var currentTeam = this.teams.filter(function( team ) {
           return team.name == teamFullName;
@@ -127,10 +135,24 @@ jQuery(document).ready(function(){
         return (currentTeam[0]) ? currentTeam[0] || {} : {};
       },
 
+      /**
+       * getTeamGroup()
+       * @param teamFullName
+       * @returns {*}
+       *
+       * Returns the group belonging to a team by their full string name
+       */
       getTeamGroup: function(teamFullName) {
         return getGroupTeam(teamFullName);
       },
 
+      /**
+       * getTeamFlag()
+       * @param teamFullName
+       * @returns {*}
+       *
+       * Returns url of flag belonging to a team by their full string name
+       */
       getTeamFlag: function(teamFullName) {
         var currentTeam = this.teams.filter(function( team ) {
           return team.name == teamFullName;
@@ -139,10 +161,22 @@ jQuery(document).ready(function(){
         return flag;
       },
 
+      /**
+       * getFixtureId()
+       * @param fixture
+       * @returns {string}
+       *
+       * Returns the string of the fixture's ID by the full fixture object
+       */
       getFixtureId: function(fixture) {
         return fixture._links.self.href.replace('http://api.football-data.org/v1/fixtures/','');
       },
 
+      /**
+       * updateCountdowns()
+       *
+       * Used to update countdown timers objects and updating them into view
+       */
       updateCountdowns: function() {
         var that = this;
         setInterval(function(){
@@ -158,11 +192,25 @@ jQuery(document).ready(function(){
         }, 1000);
       },
 
+      /**
+       * getRemainingTimeFromFixture()
+       * @param fixture
+       * @returns {string}
+       *
+       * Returns remaining string time by object fixture
+       */
       getRemainingTimeFromFixture: function(fixture) {
         var d = new Date(fixture.date);
         return this.getRemainingTime(d);
       },
 
+      /**
+       * getRemainingTime
+       * @param date
+       * @returns {string}
+       *
+       * Returns remaining string time by final date
+       */
       getRemainingTime: function(date) {
         var d = date;
         var dn = new Date();
@@ -193,6 +241,13 @@ jQuery(document).ready(function(){
         return finalText;
       },
 
+      /**
+       * getReadableDate()
+       * @param fixture
+       * @returns {string}
+       *
+       * Returns date string from the fixture given
+       */
       getReadableDate: function(fixture) {
         var d = new Date(fixture.date);
         var dDate = d.getDate().toString().length === 1 ? '0'+d.getDate() : d.getDate();
@@ -204,6 +259,14 @@ jQuery(document).ready(function(){
 
         return dDayWord + ' ' + dDate + '/' + dMonth + '/' + dYear;
       },
+
+      /**
+       * getReadableDateTime()
+       * @param fixture
+       * @returns {string}
+       *
+       * Returns date time string from the fixture given
+       */
       getReadableDateTime: function(fixture) {
         var d = new Date(fixture.date);
         var dDate = d.getDate().toString().length === 1 ? '0'+d.getDate() : d.getDate();
