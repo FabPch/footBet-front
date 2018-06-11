@@ -94,7 +94,15 @@ jQuery(document).ready(function(){
        * Method binded by submit prediction event
        */
       submitPrediction: function(event) {
-        console.log(event);
+        var elts = event.target.elements;
+        var params = {};
+
+        for(var i=0; i<elts.length; i++) {
+          if(params[elts[i].name] !== '') {
+            params[elts[i].name] = elts[i].value;
+          }
+        }
+        console.log(params);
       },
 
       /**

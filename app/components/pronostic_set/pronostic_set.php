@@ -35,7 +35,7 @@
                   <img src="/assets/img/icon-bet-black.svg" class="prediction-icon icon-black" alt="Prediction icon"/>
                   <img src="/assets/img/icon-bet-white.svg" class="prediction-icon icon-white" alt="Prediction icon"/>
                   <span class="prediction-home">?</span>
-                  <input type="text" placeholder="?" name="predictionAway" class="col-9"/>
+                  <input type="text" placeholder="?" name="predictionHome" class="col-9"/>
                 </div>
                 <div class="col-6">
                   <span class="prediction-away">?</span>
