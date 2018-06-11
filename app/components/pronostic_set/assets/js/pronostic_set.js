@@ -29,6 +29,21 @@ jQuery(document).ready(function(){
 
     // Custom methods
     methods: {
+
+      /**
+       *  goEdit(event)
+       *  Method binded from frontend
+       *  Shows editing mode for a specific card
+       */
+      goEdit: function(event){
+        var fixtureId = $(event.currentTarget).attr('data-fixture-id');
+        console.log(fixtureId);
+      },
+
+      /**
+       *  getAllTeams()
+       *  Call ajax API /v1/competitions/467/teams
+       */
       getAllTeams: function(evt) {
         this.$http.get(
           'http://api.football-data.org/v1/competitions/467/teams',
@@ -38,6 +53,11 @@ jQuery(document).ready(function(){
           this.getFixtures();
         });
       },
+
+      /**
+       *  getFixtures()
+       *  Call ajax API /v1/competitions/467/fixtures
+       */
       getFixtures: function() {
         this.$http.get(
           'http://api.football-data.org/v1/competitions/467/fixtures',
@@ -104,6 +124,11 @@ jQuery(document).ready(function(){
         });
         return (currentTeam[0]) ? currentTeam[0] || {} : {};
       },
+
+      getTeamGroup: function(teamFullName) {
+        return getGroupTeam(teamFullName);
+      },
+
       getTeamFlag: function(teamFullName) {
         var currentTeam = this.teams.filter(function( team ) {
           return team.name == teamFullName;

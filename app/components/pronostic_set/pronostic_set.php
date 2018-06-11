@@ -10,11 +10,11 @@
           <hr>
         </div>
         <div class="col-3" v-show="fixture.homeTeamName.length > 0">
-          <div class="card">
-            <div class="card card-hover"></div>
-            <div class="card-group-hover rounded-circle"></div>
-            <div class="card-group">
-                <img :src="'http://placeholder.pics/svg/40/DEDEDE/DEDEDE/A'" class="rounded-circle">
+          <div class="card" :data-fixture-id="getFixtureId(fixture)">
+            <div class="card card-hover" v-on:click="goEdit" :data-fixture-id="getFixtureId(fixture)"></div>
+            <div class="card-group-hover rounded-circle" v-on:click="goEdit" :data-fixture-id="getFixtureId(fixture)"></div>
+            <div class="card-group rounded-circle text-center">
+                <span>{{ getTeamGroup(fixture.homeTeamName)===getTeamGroup(fixture.awayTeamName) ? getTeamGroup(fixture.homeTeamName) : getTeamGroup(fixture.homeTeamName) + ' | ' + getTeamGroup(fixture.awayTeamName) }}</span>
             </div>
             <div class="card-body">
               <form class="row" method="POST">
@@ -36,8 +36,8 @@
               </form>
             </div>
           </div>
-          <div class="post-card">
-            <div class="remaining-time" :data-fixture-id="getFixtureId(fixture)">{{ countdownsString[getFixtureId(fixture)] }}</div>
+          <div class="post-card" :data-fixture-id="getFixtureId(fixture)">
+            <div class="remaining-time text-center" :data-fixture-id="getFixtureId(fixture)">{{ countdownsString[getFixtureId(fixture)] }}</div>
           </div>
         </div>
       </template>
