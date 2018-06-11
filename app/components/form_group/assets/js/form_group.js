@@ -1,6 +1,13 @@
 window.onload = function () {
-  var elt = '#cmp-form-group';
-
+    var elt = '#cmp-form-group';
+    var errorGroup = ".errorGroup";
+    var goodGroup = ".goodGroup";
+    var errorEmail = ".errorEmail";
+    var goodEmail = ".goodEmail";
+    var errorPass = ".errorPass";
+    var goodPass = ".goodPass";
+    var errorConfPass = ".errorConfPass";
+    var goodConfPass = ".goodConfPass";
   var vm = new Vue({
     el: elt,
     data: {
@@ -40,18 +47,42 @@ window.onload = function () {
 
     // Custom methods
     methods: {
-      validGroupName: function(){
-        return isValueValid(this.groupName, 'textfield');
-      },
-      validEmail: function(){
-        return isValueValid(this.email, 'email');
-      },
-      validPassword:  function(){
-        return isValueValid(this.password, 'password');
-      },
-      validPasswords: function () {
-        return isValueValid(this.password, 'password') && this.password == this.confirmPassword
-      },
+        validGroupName: function(evt){
+            if (checkTextField(evt)){
+                goodPseudo.show();
+                errorPseudo.hidden = true;
+            } else {
+                goodPseudo.hidden = true;
+                errorPseudo.show();
+            }
+        },
+        validEmail: function(evt){
+            if (checkEmail(evt)){
+                goodPseudo.show();
+                errorPseudo.hidden = true;
+            } else {
+                goodPseudo.hidden = true;
+                errorPseudo.show();
+            }
+        },
+        validPassword:  function(evt){
+            if (checkPassword(evt)){
+                goodPseudo.show();
+                errorPseudo.hidden = true;
+            } else {
+                goodPseudo.hidden = true;
+                errorPseudo.show();
+            }
+        },
+        validPasswords: function () {
+            if (this.password == this.confirmPassword){
+                goodPass.show();
+                errorPass.hidden = true;
+            } else {
+                goodPass.hidden = true;
+                errorPass.show();
+            }
+        },
 
       clickedLinkSignUp : function (evt) {
         this.modeSignUp = true;

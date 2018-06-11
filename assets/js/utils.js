@@ -7,3 +7,14 @@ var isValueValid = function(val, type) {
 
   return regexp[type].test(val);
 }
+var checkEmail = function(val){
+  return isValueValid(val, "email");
+}
+
+var checkPassword = function(val){
+    return isValueValid(val, "password");
+}
+
+var checkTextField = function(val){
+    return isValueValid(val, "textfield");
+}

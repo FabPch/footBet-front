@@ -6,8 +6,14 @@
     <div class="form-group row">
       <label for="inputGroupName" class="col-sm-2 col-form-label">Nom du groupe</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputGroupName" placeholder="ex: L'équipe des bookmakers" v-model="groupName">
+        <input type="text" v-on:blur="validGroupName" class="form-control" id="inputGroupName" placeholder="ex: L'équipe des bookmakers" v-model="groupName">
       </div>
+        <div class="valid-feedback goodGroup hidden">
+            Looks good!
+        </div>
+        <div class="invalid-feedback errorGroup hidden">
+            Please choose a username.
+        </div>
     </div>
     <div class="alert alert-info" role="alert" v-show="!isConnected">
       Vous n'êtes pas authentifié...
@@ -17,25 +23,44 @@
     <div class="form-group row" v-show="modeSignUp || modeSignIn">
       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" v-model="email">
+        <input type="email" v-on:blur="validEmail" class="form-control" id="inputEmail" placeholder="Email" v-model="email">
       </div>
+        <div class="valid-feedback goodEmail hidden">
+            Looks good!
+        </div>
+        <div class="invalid-feedback errorEmail hidden">
+            Please choose a username.
+        </div>
     </div>
     <div class="form-group row" v-show="modeSignUp || modeSignIn">
       <label for="inputPassword" class="col-sm-2 col-form-label">Mot de passe</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" v-model="password">
+        <input type="password" v-on:blur="validPassword" class="form-control" id="inputPassword" placeholder="Mot de passe" v-model="password">
       </div>
+        <div class="valid-feedback goodPass hidden">
+            Looks good!
+        </div>
+        <div class="invalid-feedback errorPass hidden">
+            Please choose a username.
+        </div>
     </div>
     <div class="form-group row" v-show="modeSignUp">
       <label for="inputConfirmPassword" class="col-sm-2 col-form-label">Confirmation du mot de passe</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirmation du mot de passe" v-model="confirmPassword">
+        <input type="password" v-on:blur="validPasswords" class="form-control" id="inputConfirmPassword" placeholder="Confirmation du mot de passe" v-model="confirmPassword">
       </div>
+        <div class="valid-feedback goodConfPass hidden">
+            Looks good!
+        </div>
+        <div class="invalid-feedback errorConfPass hidden">
+            Please choose a username.
+        </div>
     </div>
+
     <div class="form-group row" v-show="modeSignUp">
       <label for="inputNickname" class="col-sm-2 col-form-label">Votre surnom</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputNickname" placeholder="ex: The Jojo" aria-describedby="nicknameHelpBlock" v-model="nickname">
+        <input type="text" v-on:blur="validGroupName" class="form-control" id="inputNickname" placeholder="ex: The Jojo" aria-describedby="nicknameHelpBlock" v-model="nickname">
         <small id="nicknameHelpBlock" class="form-text text-muted">
         Ce surnom est unique et sera affiché de manière publique aux personnes de votre groupe.
         </small>

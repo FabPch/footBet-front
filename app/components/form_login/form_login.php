@@ -6,14 +6,26 @@
     <div class="form-group row">
       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail" placeholder="ex: charlesEdouardRemise@riche.com" v-model="email">
+        <input type="email" v-on:blur="validEmail" class="form-control" id="inputEmail" placeholder="ex: charlesEdouardRemise@riche.com" v-model="email">
       </div>
+        <div class="valid-feedback goodEmail">
+            Looks good!
+        </div>
+        <div class="invalid-feedback errorEmail">
+            Please choose a username.
+        </div>
     </div>
     <div class="form-group row">
       <label for="inputPassword" class="col-sm-2 col-form-label">Mot de passe</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" v-model="password">
+        <input type="password" v-on:blur="validPassword" class="form-control" id="inputPassword" placeholder="Mot de passe" v-model="password">
       </div>
+        <div class="valid-feedback goodPass">
+            Looks good!
+        </div>
+        <div class="invalid-feedback errorPass hidden">
+            Please choose a username.
+        </div>
     </div>
       <div class="form-group row">
           <div class="col-sm-2"></div>

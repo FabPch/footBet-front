@@ -1,6 +1,13 @@
 window.onload = function () {
   var elt = '#cmp-form-signup';
-
+  var errorPseudo = ".errorPseudo";
+  var goodPseudo = ".goodPseudo";
+  var errorEmail = ".errorEmail";
+  var goodEmail = ".goodEmail";
+  var errorPass = ".errorPass";
+  var goodPass = ".goodPass";
+  var errorConfPass = ".errorConfPass";
+  var goodConfPass = ".goodConfPass";
   var vm = new Vue({
     el: elt,
     data: {
@@ -34,14 +41,52 @@ window.onload = function () {
 
     // Custom methods
     methods: {
-      clickedLinkSignIn: function (evt) {
-        return false;
-      },
+        validPseudo: function(evt){
+            if (checkTextField(evt)){
+                goodPseudo.show();
+                errorPseudo.hidden = true;
+            } else {
+                goodPseudo.hidden = true;
+                errorPseudo.show();
+            }
+        },
+        validEmail: function(evt){
+            if (checkEmail(evt)){
+                goodPseudo.show();
+                errorPseudo.hidden = true;
+            } else {
+                goodPseudo.hidden = true;
+                errorPseudo.show();
+            }
+        },
+        validPassword:  function(evt){
+            if (checkPassword(evt)){
+                goodPseudo.show();
+                errorPseudo.hidden = true;
+            } else {
+                goodPseudo.hidden = true;
+                errorPseudo.show();
+            }
+        },
+        validPasswords: function () {
+            if (this.password == this.confirmPassword){
+                goodPass.show();
+                errorPass.hidden = true;
+            } else {
+                goodPass.hidden = true;
+                errorPass.show();
+            }
+        },
+
+        clickedLinkSignIn: function (evt) {
+            return false;
+        },
 
         submitSignup: function (evt) {
-        console.log(evt);
-        return false;
+            console.log(evt);
+            return false;
       },
+
     }
   });
 }

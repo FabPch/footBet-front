@@ -1,6 +1,9 @@
 window.onload = function () {
   var elt = '#cmp-form-login';
-
+  var errorEmail = ".errorEmail";
+  var goodEmail = ".goodEmail";
+  var errorEmail = ".errorEmail";
+  var goodPass = ".goodPass";
   var vm = new Vue({
     el: elt,
     data: {
@@ -32,14 +35,32 @@ window.onload = function () {
 
     // Custom methods
     methods: {
-      clickedLinkSignUp: function (evt) {
-        return false;
-      },
+        validEmail: function(evt){
+            if (checkEmail(evt)){
+                goodPseudo.show();
+                errorPseudo.hidden = true;
+            } else {
+                goodPseudo.hidden = true;
+                errorPseudo.show();
+            }
+        },
+        validPassword:  function(evt){
+            if (checkPassword(evt)){
+                goodPseudo.show();
+                errorPseudo.hidden = true;
+            } else {
+                goodPseudo.hidden = true;
+                errorPseudo.show();
+            }
+        },
+        clickedLinkSignUp: function (evt) {
+          return false;
+        },
 
-        submitLogin: function (evt) {
-        console.log(evt);
-        return false;
-      },
+          submitLogin: function (evt) {
+          console.log(evt);
+          return false;
+        },
     }
   });
 }
