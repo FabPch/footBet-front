@@ -17,7 +17,7 @@
                 <span>{{ getTeamGroup(fixture.homeTeamName)===getTeamGroup(fixture.awayTeamName) ? getTeamGroup(fixture.homeTeamName) : getTeamGroup(fixture.homeTeamName) + ' | ' + getTeamGroup(fixture.awayTeamName) }}</span>
             </div>
             <div class="card-body">
-              <form class="row" method="POST">
+              <form class="row" method="POST" @submit.prevent="submitPrediction">
                 <input type="hidden" :value="getFixtureId(fixture)" name="fixtureId"/>
 
                 <!-- Row flags & team names -->
@@ -32,7 +32,8 @@
 
                 <!-- Row predictions -->
                 <div class="col-6">
-                  <img src="/assets/img/prediction.png" class="prediction-icon" alt="Prediction icon"/>
+                  <img src="/assets/img/icon-bet-black.svg" class="prediction-icon icon-black" alt="Prediction icon"/>
+                  <img src="/assets/img/icon-bet-white.svg" class="prediction-icon icon-white" alt="Prediction icon"/>
                   <span class="prediction-home">?</span>
                   <input type="text" placeholder="?" name="predictionAway" class="col-9"/>
                 </div>
@@ -43,7 +44,8 @@
 
                 <!-- Row match results -->
                 <div class="col-6" v-show="fixture.result.goalsHomeTeam !== null && fixture.result.goalsAwayTeam !== null">
-                  <img src="/assets/img/ball.png" class="ball-icon" alt="Ball icon"/>
+                  <img src="/assets/img/icon-result-black.svg" class="ball-icon icon-black" alt="Ball icon"/>
+                  <img src="/assets/img/icon-result-white.svg" class="ball-icon icon-white" alt="Ball icon"/>
                   <span class="result-home">{{ fixture.result.goalsHomeTeam }}</span>
                 </div>
                 <div class="col-6" v-show="fixture.result.goalsHomeTeam !== null && fixture.result.goalsAwayTeam !== null">
