@@ -1,16 +1,19 @@
-window.onload = function () {
-  var elt = '#cmp-form-login';
-  var errorEmail = ".errorEmail";
-  var goodEmail = ".goodEmail";
-  var errorEmail = ".errorEmail";
-  var goodPass = ".goodPass";
+var cmpFormLogin = '#cmp-form-login';
+jQuery(document).ready(function(){
   var vm = new Vue({
-    el: elt,
+    el: cmpFormLogin,
     data: {
       mounted: false,
-      title: "Vous connecter",
+
+      title: "Connectez-vous",
+
       email: "",
-      password: ""
+      password: "",
+
+      emailValidated: null,
+      passwordValidated: null,
+
+      loginFailed: false
     },
 
     // Default lifecycle events
@@ -35,32 +38,55 @@ window.onload = function () {
 
     // Custom methods
     methods: {
-        validEmail: function(evt){
-            if (checkEmail(evt)){
-                goodPseudo.show();
-                errorPseudo.hidden = true;
-            } else {
-                goodPseudo.hidden = true;
-                errorPseudo.show();
-            }
-        },
-        validPassword:  function(evt){
-            if (checkPassword(evt)){
-                goodPseudo.show();
-                errorPseudo.hidden = true;
-            } else {
-                goodPseudo.hidden = true;
-                errorPseudo.show();
-            }
-        },
-        clickedLinkSignUp: function (evt) {
-          return false;
-        },
+      validEmail: function(evt){
+        // Reinit login failure
+        this.loginFailed = false;
 
-          submitLogin: function (evt) {
-          console.log(evt);
-          return false;
-        },
+        this.emailValidated = checkEmail(this.email);
+      },
+
+      validPassword: function(evt) {
+        // Reinit login failure
+        this.loginFailed = false;
+
+        this.passwordValidated = this.password.length >= 3;
+      },
+
+      submitLogin: function (evt) {
+
+        // Check inputs valid
+        if(checkEmail(this.email) && this.password.length >= 3) {
+
+          // Reinit login failure
+          this.loginFailed = false;
+
+          // Prepare params
+          var params = {
+            "login": this.email,
+            "password": this.password
+          };
+
+          // Save context to use it into other context
+          var that = this;
+
+          // Call Ajax WS /api/auth
+          this.$http.post(
+            '/api/auth',
+            params
+          ).then(
+            // success
+            function(response) {
+              window.location.href = "/my/account";
+            },
+
+            // error
+            function(response) {
+              that.loginFailed = true;
+            }
+          );
+        }
+        return false;
+      }
     }
   });
-}
+});

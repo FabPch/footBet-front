@@ -2,55 +2,51 @@
   <h1>
     {{title}}
   </h1>
-  <form>
+  <form method="post" @submit.prevent="submitLogin">
+
+    <div class="form-group row">
+        <div class="alert alert-danger col-sm-12" role="alert" v-show="loginFailed">
+          L'email / mot de passe ne corespondent pas ...
+        </div>
+    </div>
     <div class="form-group row">
       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
-        <input type="email" v-on:blur="validEmail" class="form-control" id="inputEmail" placeholder="ex: charlesEdouardRemise@riche.com" v-model="email">
+        <input type="email" v-on:blur="validEmail" class="form-control" v-bind:class="{ 'is-invalid': (emailValidated === false || loginFailed === true), 'is-valid': (emailValidated === true) }" id="inputEmail" placeholder="Votre email" v-model="email">
+        <div class="invalid-feedback" v-show="emailValidated === false">
+          Veuillez saisir un email valide
+        </div>
       </div>
-        <div class="valid-feedback goodEmail">
-            Looks good!
-        </div>
-        <div class="invalid-feedback errorEmail">
-            Please choose a username.
-        </div>
     </div>
     <div class="form-group row">
       <label for="inputPassword" class="col-sm-2 col-form-label">Mot de passe</label>
       <div class="col-sm-10">
-        <input type="password" v-on:blur="validPassword" class="form-control" id="inputPassword" placeholder="Mot de passe" v-model="password">
+        <input type="password" v-on:blur="validPassword" class="form-control" v-bind:class="{ 'is-invalid': (loginFailed === true), 'is-valid': (passwordValidated === true) }" id="inputPassword" placeholder="Votre mot de passe" v-model="password">
       </div>
-        <div class="valid-feedback goodPass">
-            Looks good!
-        </div>
-        <div class="invalid-feedback errorPass hidden">
-            Please choose a username.
-        </div>
     </div>
-      <div class="form-group row">
-          <div class="col-sm-2"></div>
-          <div class="col-sm-10">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck1">
-                  <label class="form-check-label" for="gridCheck1">
-                      Se souvenir de moi
-                  </label>
-              </div>
-          </div>
+    <div class="form-group row" style="display:none;">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck1">
+          <label class="form-check-label" for="gridCheck1">
+            Se souvenir de moi
+          </label>
+        </div>
       </div>
+    </div>
 
-      <div class="form-group row">
-          <div class="col-sm-2"></div>
-            <div class="col-sm-10">
-              Vous n'avez pas encore de compte ?
-              <a href="#" v-on:click="clickedLinkSignUp">Inscrivez-vous</a>
-            </div>
-          </div>
+    <div class="form-group row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        Vous n'avez pas encore de compte ?
+        <a href="/sign_up">Inscrivez-vous</a>
       </div>
+    </div>
 
     <div class="form-group row">
       <div class="col text-center">
-        <button type="submit" class="btn btn-primary" v-on:click="submitLogin">Se connecter</button>
+        <button class="btn btn-primary" role="submit">Se connecter</button>
       </div>
     </div>
 
