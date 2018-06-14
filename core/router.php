@@ -10,6 +10,7 @@
         "/group" => "group",
         "/sign_up" => "signup",
         "/sign_in" => "login",
+        "/my/dashboard" => "my/dashboard",
         "/my/predictions" => "my/predictions"
     );
 
