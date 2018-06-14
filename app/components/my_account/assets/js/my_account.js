@@ -8,7 +8,8 @@ jQuery(document).ready(function(){
       title: "Mon profil",
 
       email: "",
-      nickname: ""
+      nickname: "",
+      profilePic: ""
     },
 
     // Default lifecycle events
@@ -21,6 +22,8 @@ jQuery(document).ready(function(){
     mounted: function (evt) {
       this.nickname = lsGetData('userNickname');
       this.email = lsGetData('userEmail');
+
+      this.loadProfilePic();
 
       $('.loader').hide(750);
       this.mounted = true;
@@ -36,6 +39,9 @@ jQuery(document).ready(function(){
 
     // Custom methods
     methods: {
+      loadProfilePic: function() {
+        this.profilePic = 'https://www.gravatar.com/avatar/'+md5(this.email);
+      }
     }
   });
 });
