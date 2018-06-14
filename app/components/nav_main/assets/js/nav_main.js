@@ -45,7 +45,7 @@ jQuery(document).ready(function(){
     methods: {
       getUserStatus: function(evt) {
         this.$http.get(
-          '/api/userStatus'
+          '/api/auth'
         ).then(function(response) {
           console.log(response);
         });
