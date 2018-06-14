@@ -11,6 +11,7 @@ jQuery(document).ready(function(){
       countdowns: {},
       countdownsString: {},
 
+      pronostics: {},
       teams: [],
       fixtures: []
     },
@@ -22,6 +23,17 @@ jQuery(document).ready(function(){
     mounted: function(evt) {
       window.ddata = this; // TODO : remove after testing
       this.getAllTeams();
+      this.getPronostics();
+
+      var teamPronoCounter = 0;
+      var that = this;
+      $(document).on('team_prono', function(event) {
+        teamPronoCounter++;
+        if(teamPronoCounter===2) {
+          that.getFixtures();
+          teamPronoCounter=0;
+        }
+      });
     },
     beforeUpdate: function(evt) {},
     updated: function(evt) {},
@@ -44,6 +56,24 @@ jQuery(document).ready(function(){
         console.log(fixtureId);
       },
 
+      getPronostics: function() {
+        this.$http.get(
+          '/api/pronostic'
+        ).then(
+
+          // Success
+          function(response) {
+            this.pronostics = response.body;
+            $(document).trigger('team_prono', []);
+          },
+
+          // Error
+          function(response) {
+            $(document).trigger('team_prono', []);
+          }
+        );
+      },
+
       /**
        *  getAllTeams()
        *  Call ajax API /v1/competitions/467/teams
@@ -52,10 +82,15 @@ jQuery(document).ready(function(){
         this.$http.get(
           'http://api.football-data.org/v1/competitions/467/teams',
           {headers: {'X-Auth-Token': '8aa99a3f8ed74cd3862fd8282585bc95'}}
-        ).then(function(response) {
-          this.teams = response.body.teams;
-          this.getFixtures();
-        });
+        ).then(
+          function(response) {
+            this.teams = response.body.teams;
+            $(document).trigger('team_prono', []);
+          },
+          function(response) {
+            $(document).trigger('team_prono', []);
+          }
+        );
       },
 
       /**
@@ -122,8 +157,8 @@ jQuery(document).ready(function(){
           function(response) {
             console.log(response);
             that.editCard = '';
-            $('.prediction-home').text(params.prono1);
-            $('.prediction-away').text(params.prono2);
+            $('[data-fixture-id='+that.editCard+'] .prediction-home').text(params.prono1);
+            $('[data-fixture-id='+that.editCard+'] .prediction-away').text(params.prono2);
             $('#alert-pronostic-ok').show();
             setTimeout(function(){
               $('#alert-pronostic-ok').hide(750);

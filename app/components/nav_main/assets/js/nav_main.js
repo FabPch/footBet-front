@@ -9,7 +9,7 @@ jQuery(document).ready(function(){
 
       menuItems: [
         {
-          "label": "Acceuil",
+          "label": "Accueil",
           "link": "/",
           "requiredAuth" : null
         },

@@ -6,7 +6,7 @@
 </div>
 <div id="cmp-pronostic-set" v-show="readyToShow">
   <div class="pronostic-set panel-light">
-    <h2>Liste des pronostics par match</h2>
+    <h2>Liste des pronostiques par match</h2>
     <div class="row">
       <template v-for="fixture in fixtures">
         <div class="col-12" v-show="isNewDate(fixture) && fixture.homeTeamName.length > 0">
@@ -40,11 +40,11 @@
                 <div class="col-6">
                   <img src="/assets/img/icon-bet-black.svg" class="prediction-icon icon-black" alt="Prediction icon"/>
                   <img src="/assets/img/icon-bet-white.svg" class="prediction-icon icon-white" alt="Prediction icon"/>
-                  <span class="prediction-home">?</span>
+                  <span class="prediction-home">{{ pronostics[getFixtureId(fixture)] !== undefined ? pronostics[getFixtureId(fixture)].prono1 : '?' }}</span>
                   <input type="text" placeholder="?" name="predictionHome" class="col-9"/>
                 </div>
                 <div class="col-6">
-                  <span class="prediction-away">?</span>
+                  <span class="prediction-away">{{ pronostics[getFixtureId(fixture)] !== undefined ? pronostics[getFixtureId(fixture)].prono2 : '?' }}</span>
                   <input type="text" placeholder="?" name="predictionAway" class="col-9"/>
                 </div>
 
@@ -62,7 +62,8 @@
             </div>
           </div>
           <div class="post-card" :data-fixture-id="getFixtureId(fixture)">
-            <div class="remaining-time text-center" :data-fixture-id="getFixtureId(fixture)">{{ countdownsString[getFixtureId(fixture)] }}</div>
+            <div class="text-center match-in-play" v-show="fixture.status === 'IN_PLAY'">En cours ...</div>
+            <div class="remaining-time text-center" :data-fixture-id="getFixtureId(fixture)" v-show="fixture.status === 'TIMED'">{{ countdownsString[getFixtureId(fixture)] }}</div>
           </div>
         </div>
       </template>
