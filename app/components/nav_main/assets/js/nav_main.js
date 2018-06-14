@@ -5,26 +5,48 @@ jQuery(document).ready(function(){
     data: {
       readyToShow: false,
 
+      userSignedIn: false,
+
       menuItems: [
         {
           "label": "Acceuil",
           "link": "/",
+          "requiredAuth" : null
+        },
+        {
+          "label": "Mon tableau de bord",
+          "link": "/my/dashboard",
+          "requiredAuth" : true
+        },
+        {
+          "label": "Mes pronostiques",
+          "link": "/my/predictions",
+          "requiredAuth" : true
         },
         {
           "label": "Le calendrier des matchs",
           "link": "/#cmp-match-list",
+          "requiredAuth" : null
         },
         {
           "label": "Créer mon groupe",
           "link": "/group",
+          "requiredAuth" : false
         },
         {
           "label": "Se connecter",
           "link": "/sign_in",
+          "requiredAuth" : false
         },
         {
           "label": "S'inscrire",
           "link": "/sign_up",
+          "requiredAuth" : false
+        },
+        {
+          "label": "Se déconnecter",
+          "link": "/sign_out",
+          "requiredAuth" : true
         }
       ]
     },
@@ -35,6 +57,13 @@ jQuery(document).ready(function(){
     beforeMount: function(evt) {},
     mounted: function(evt) {
       this.getUserStatus();
+
+      if(getUriParams().alert && getUriParams().alert === "register-ok") {
+        $('#alert-signedout-ok').show();
+        setTimeout(function(){
+          $('#alert-signedout-ok').fadeOut(750);
+        }, 5000);
+      }
     },
     beforeUpdate: function(evt) {},
     updated: function(evt) {},
@@ -43,12 +72,53 @@ jQuery(document).ready(function(){
 
     // Custom methods
     methods: {
+      /**
+       * getUserStatus()
+       * @param evt
+       * Methods that calls /api/auth [get] to get user informations
+       * Called when component is loaded
+       */
       getUserStatus: function(evt) {
+        var that = this;
         this.$http.get(
           '/api/auth'
-        ).then(function(response) {
-          console.log(response);
-        });
+        ).then(
+          // Success
+          function(response) {
+            that.userSignedIn = true;
+          },
+
+          // Error
+          function(response) {
+            that.userSignedIn = false;
+          }
+        );
+      },
+
+      /**
+       * submitSignout()
+       * @param evt
+       * Signout method binded on link /sign_out
+       * Is calls /api/auth [delete]
+       */
+      submitSignout: function(evt) {
+        evt.preventDefault();
+        this.$http.delete(
+          '/api/auth'
+        ).then(
+          // Success
+          function(response) {
+            window.location.href = '/?alert=singout-ok';
+          },
+
+          // Error
+          function(response) {
+            console.error("Disconnection failed");
+            console.error(response);
+            window.location.href = '/';
+          }
+        );
+        return false;
       }
     }
   });
