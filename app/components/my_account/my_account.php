@@ -18,6 +18,7 @@
     </div>
 
     <div class="col-8">
+        <?php new IncComponent("ranking"); ?>
     </div>
   </div>
 
