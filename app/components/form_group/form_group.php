@@ -2,7 +2,7 @@
   <h1>
     {{title}}
   </h1>
-    <form method="post" @submit.prevent="{ modeSignUp : submitSignUpAndCreateGroup, modeSignIn : submitSignInAndCreateGroup">
+    <form method="post" @submit.prevent="modeSignUp : submitSignUpAndCreateGroup, modeSignIn : submitSignInAndCreateGroup">
     <div class="form-group row">
       <label for="inputGroupName" class="col-sm-2 col-form-label">Nom du groupe</label>
       <div class="col-sm-10">
