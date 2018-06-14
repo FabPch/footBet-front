@@ -80,7 +80,7 @@ jQuery(document).ready(function(){
           ).then(
             // success
             function(response) {
-              window.location.href = "/my/account";
+              window.location.href = "/my/dashboard";
             },
 
             // error
