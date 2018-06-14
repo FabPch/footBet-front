@@ -16,13 +16,20 @@ window.onload = function () {
       modeSignUp: false,
       modeSignIn: false,
 
-      title: "Création d'un groupe",
+        group: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        nickname: "",
+        groupValidated: null,
+        emailValidated: null,
+        passwordValidated: null,
+        confirmPasswordValidated: null,
+        nickname: "",
 
-      groupName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      nickname: ""
+        signUpFailed: false,
+
+      title: "Création d'un groupe"
     },
 
     // Default lifecycle events
@@ -47,41 +54,29 @@ window.onload = function () {
 
     // Custom methods
     methods: {
-        validGroupName: function(evt){
-            if (checkTextField(evt)){
-                goodPseudo.show();
-                errorPseudo.hidden = true;
-            } else {
-                goodPseudo.hidden = true;
-                errorPseudo.show();
-            }
+        validGroup: function(evt){
+            // Reinit signup failure
+            this.signUpFailed = false;
+
+            this.groupValidated = checkTextField(this.group);
         },
         validEmail: function(evt){
-            if (checkEmail(evt)){
-                goodPseudo.show();
-                errorPseudo.hidden = true;
-            } else {
-                goodPseudo.hidden = true;
-                errorPseudo.show();
-            }
+            // Reinit signup failure
+            this.signUpFailed = false;
+
+            this.emailValidated = checkEmail(this.email);
         },
         validPassword:  function(evt){
-            if (checkPassword(evt)){
-                goodPseudo.show();
-                errorPseudo.hidden = true;
-            } else {
-                goodPseudo.hidden = true;
-                errorPseudo.show();
-            }
+            // Reinit signup failure
+            this.signUpFailed = false;
+
+            this.passwordValidated = checkPassword(this.password);
         },
         validPasswords: function () {
-            if (this.password == this.confirmPassword){
-                goodPass.show();
-                errorPass.hidden = true;
-            } else {
-                goodPass.hidden = true;
-                errorPass.show();
-            }
+            // Reinit signup failure
+            this.signUpFailed = false;
+
+            this.confirmPasswordValidated = (this.password === this.confirmPassword && checkPassword(this.password));
         },
 
       clickedLinkSignUp : function (evt) {
