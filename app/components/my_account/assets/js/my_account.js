@@ -19,6 +19,9 @@ jQuery(document).ready(function(){
     beforeMount: function (evt) {
     },
     mounted: function (evt) {
+      this.nickname = lsGetData('userNickname');
+      this.email = lsGetData('userEmail');
+
       $('.loader').hide(750);
       this.mounted = true;
     },

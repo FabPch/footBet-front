@@ -43,7 +43,16 @@ jQuery(document).ready(function(){
         }).finally(function(){
           $('[data-toggle="popover"]').popover();
           $('.loader').hide(750);
+
           this.readyToShow = true;
+
+          // Scroll if anchor in url
+          setTimeout(function(){
+            var locationHash = window.location.hash.split("#");
+            if(locationHash.length > 1) {
+              $('.main-container')[0].scrollTo(0,$('#' + locationHash[1]).offset().top);
+            }
+          },1000);
         });
       },
 
