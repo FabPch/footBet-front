@@ -98,7 +98,7 @@ jQuery(document).ready(function(){
         var params = {};
 
         for(var i=0; i<elts.length; i++) {
-          if(params[elts[i].name] !== '') {
+          if(params[elts[i].name] !== undefined && params[elts[i].name] !== null && params[elts[i].name] !== '') {
             params[elts[i].name] = elts[i].value;
           }
         }
