@@ -25,7 +25,7 @@ window.onload = function () {
         emailValidated: null,
         passwordValidated: null,
         confirmPasswordValidated: null,
-        nickname: "",
+        nicknameValidated: null,
 
         signUpFailed: false,
 
@@ -77,6 +77,12 @@ window.onload = function () {
             this.signUpFailed = false;
 
             this.confirmPasswordValidated = (this.password === this.confirmPassword && checkPassword(this.password));
+        },
+        validNickname: function () {
+            // Reinit signup failure
+            this.signUpFailed = false;
+
+            this.nicknameValidated = checkTextField(this.nickname);
         },
 
       clickedLinkSignUp : function (evt) {
