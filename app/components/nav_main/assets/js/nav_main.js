@@ -94,6 +94,11 @@ jQuery(document).ready(function(){
           // Error
           function(response) {
             that.userSignedIn = false;
+
+            // Security redirect
+            if(window.location.pathname.indexOf('/my/') !== -1) {
+              window.location.href = '/sign_in';
+            }
           }
         );
       },
