@@ -43,6 +43,14 @@ a:hover, a:focus, a:active {
     color: rgba(240, 240, 240, 1);
 }
 
+.modal-backdrop {
+    z-index: 0;
+}
+
+.modal .modal-body {
+    color: rgba(27, 27, 27, 1);
+}
+
 .btn, input {
     border-radius: 0;
 }
