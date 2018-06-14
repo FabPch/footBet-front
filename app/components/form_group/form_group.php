@@ -6,8 +6,8 @@
     <div class="form-group row">
       <label for="inputGroupName" class="col-sm-2 col-form-label">Nom du groupe</label>
       <div class="col-sm-10">
-          <input type="text" v-on:blur="validGroupName" class="form-control" v-bind:class="{ 'is-invalid': (emailValidated === false || signUpFailed === true), 'is-valid': (emailValidated === true) }" id="inputGroupName" placeholder="ex: L'équipe des bookmakers" v-model="groupName">
-          <div class="invalid-feedback" v-show="emailValidated === false">
+          <input type="text" v-on:blur="validGroupName" class="form-control" v-bind:class="{ 'is-invalid': (groupValidated === false || signUpFailed === true), 'is-valid': (groupValidated === true) }" id="inputGroupName" placeholder="ex: L'équipe des bookmakers" v-model="groupName">
+          <div class="invalid-feedback" v-show="groupValidated === false">
               Veuillez saisir un nom de groupe valide
           </div>
     </div>
