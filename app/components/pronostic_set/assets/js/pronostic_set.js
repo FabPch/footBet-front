@@ -97,12 +97,49 @@ jQuery(document).ready(function(){
         var elts = event.target.elements;
         var params = {};
 
-        for(var i=0; i<elts.length; i++) {
-          if(params[elts[i].name] !== undefined && params[elts[i].name] !== null && params[elts[i].name] !== '') {
-            params[elts[i].name] = elts[i].value;
+        var matchId = (elts.fixtureId) ? elts.fixtureId.value || '' : '';
+        var predictionHome = (elts.predictionHome) ? elts.predictionHome.value || '' : '';
+        var predictionAway = (elts.predictionAway) ? elts.predictionAway.value || '' : '';
+
+        if(predictionHome !== '' && predictionAway !== '' && matchId !== '') {
+          params.prono1 = predictionHome;
+          params.prono2 = predictionAway;
+          params.game = {
+            id: matchId
           }
         }
-        console.log(params);
+
+        if(params === {}) {
+          return false;
+        }
+
+        var that = this;
+        this.$http.post(
+          '/api/pronostic',
+          params
+        ).then(
+          // Success
+          function(response) {
+            console.log(response);
+            that.editCard = '';
+            $('.prediction-home').text(params.prono1);
+            $('.prediction-away').text(params.prono2);
+            $('#alert-pronostic-ok').show();
+            setTimeout(function(){
+              $('#alert-pronostic-ok').hide(750);
+            }, 5000);
+          },
+
+          // Error
+          function(response) {
+            console.log(response);
+            that.editCard = '';
+            $('#alert-pronostic-ko').show();
+            setTimeout(function(){
+              $('#alert-pronostic-ko').hide(750);
+            }, 5000);
+          }
+        );
       },
 
       /**

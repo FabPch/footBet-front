@@ -1,3 +1,9 @@
+<div id="alert-pronostic-ko" class="alert alert-danger hide" role="alert">
+  Erreur d'enregistrement du pronostique...
+</div>
+<div id="alert-pronostic-ok" class="alert alert-success hide" role="alert">
+  Pronostique enregistré !
+</div>
 <div id="cmp-pronostic-set" v-show="readyToShow">
   <div class="pronostic-set panel-light">
     <h2>Liste des pronostics par match</h2>
