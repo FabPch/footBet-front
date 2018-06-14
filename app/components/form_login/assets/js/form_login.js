@@ -80,6 +80,7 @@ jQuery(document).ready(function(){
           ).then(
             // success
             function(response) {
+              lsSetData('userEmail', that.email);
               window.location.href = "/my/dashboard";
             },
 

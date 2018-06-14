@@ -3,7 +3,7 @@ var isValueValid = function (val, type) {
     textfield: /[\w\d]{3,255}/,
     password: /(.*){6,255}/,
     email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  }
+  };
 
   return regexp[type].test(val);
 };
@@ -20,15 +20,16 @@ var getUriParams = function () {
 
 var checkEmail = function (val) {
   return isValueValid(val, "email");
-}
+};
 
 var checkPassword = function (val) {
   return isValueValid(val, "password");
-}
+};
 
 var checkTextField = function (val) {
   return isValueValid(val, "textfield");
-}
+};
+
 var getGroupTeam = function (teamName) {
   var teamsGroup = {
     "Russia": "A",
@@ -72,4 +73,15 @@ var getGroupTeam = function (teamName) {
     "Japan": "H"
   };
   return teamsGroup[teamName];
+};
+
+var lsGetData = function(key) {
+  return localStorage.getItem(key);
+};
+
+var lsSetData = function(key, value) {
+  var lsItem = localStorage.getItem(key);
+  if(lsItem && lsItem !== value) {
+    localStorage.setItem(key, value);
+  }
 };

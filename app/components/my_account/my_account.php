@@ -3,4 +3,5 @@
     {{title}}
   </h1>
 
+  Bonjour {{nickname}}
 </div>

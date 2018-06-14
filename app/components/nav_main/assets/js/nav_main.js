@@ -58,10 +58,10 @@ jQuery(document).ready(function(){
     mounted: function(evt) {
       this.getUserStatus();
 
-      if(getUriParams().alert && getUriParams().alert === "register-ok") {
+      if(getUriParams().alert && getUriParams().alert === "signout-ok") {
         $('#alert-signedout-ok').show();
         setTimeout(function(){
-          $('#alert-signedout-ok').fadeOut(750);
+          $('#alert-signedout-ok').hide(750);
         }, 5000);
       }
     },
@@ -85,6 +85,9 @@ jQuery(document).ready(function(){
         ).then(
           // Success
           function(response) {
+            lsSetData('userId', response.body.id);
+            lsSetData('userEmail', response.body.login);
+            lsSetData('userNickname', response.body.name);
             that.userSignedIn = true;
           },
 
@@ -108,7 +111,7 @@ jQuery(document).ready(function(){
         ).then(
           // Success
           function(response) {
-            window.location.href = '/?alert=singout-ok';
+            window.location.href = '/?alert=signout-ok';
           },
 
           // Error
