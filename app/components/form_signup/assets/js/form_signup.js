@@ -1,22 +1,22 @@
-window.onload = function () {
-  var elt = '#cmp-form-signup';
-  var errorPseudo = ".errorPseudo";
-  var goodPseudo = ".goodPseudo";
-  var errorEmail = ".errorEmail";
-  var goodEmail = ".goodEmail";
-  var errorPass = ".errorPass";
-  var goodPass = ".goodPass";
-  var errorConfPass = ".errorConfPass";
-  var goodConfPass = ".goodConfPass";
+var cmpFormSignup = '#cmp-form-signup';
+jQuery(document).ready(function(){
   var vm = new Vue({
-    el: elt,
+    el: cmpFormSignup,
     data: {
       mounted: false,
-      title: "Vous inscrire",
+      title: "Inscrivez-vous",
+
       pseudo: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+
+      pseudoValidated: null,
+      emailValidated: null,
+      passwordValidated: null,
+      confirmPasswordValidated: null,
+
+      signUpFailed: false
     },
 
     // Default lifecycle events
@@ -41,52 +41,68 @@ window.onload = function () {
 
     // Custom methods
     methods: {
-        validPseudo: function(evt){
-            if (checkTextField(evt)){
-                goodPseudo.show();
-                errorPseudo.hidden = true;
-            } else {
-                goodPseudo.hidden = true;
-                errorPseudo.show();
-            }
-        },
-        validEmail: function(evt){
-            if (checkEmail(evt)){
-                goodPseudo.show();
-                errorPseudo.hidden = true;
-            } else {
-                goodPseudo.hidden = true;
-                errorPseudo.show();
-            }
-        },
-        validPassword:  function(evt){
-            if (checkPassword(evt)){
-                goodPseudo.show();
-                errorPseudo.hidden = true;
-            } else {
-                goodPseudo.hidden = true;
-                errorPseudo.show();
-            }
-        },
-        validPasswords: function () {
-            if (this.password == this.confirmPassword){
-                goodPass.show();
-                errorPass.hidden = true;
-            } else {
-                goodPass.hidden = true;
-                errorPass.show();
-            }
-        },
+      validPseudo: function(evt){
+        // Reinit signup failure
+        this.signUpFailed = false;
 
-        clickedLinkSignIn: function (evt) {
-            return false;
-        },
+        this.pseudoValidated = checkTextField(this.pseudo);
+      },
+      validEmail: function(evt){
+        // Reinit signup failure
+        this.signUpFailed = false;
 
-        submitSignup: function (evt) {
-            console.log(evt);
-            return false;
+        this.emailValidated = checkEmail(this.email);
+      },
+      validPassword:  function(evt){
+        // Reinit signup failure
+        this.signUpFailed = false;
+
+        this.passwordValidated = checkPassword(this.password);
+      },
+      validPasswords: function () {
+        // Reinit signup failure
+        this.signUpFailed = false;
+
+        this.confirmPasswordValidated = (this.password === this.confirmPassword && checkPassword(this.password));
       },
 
+      submitSignup: function (evt) {
+        // Check inputs valid
+        if(checkTextField(this.pseudo) && checkEmail(this.email) && checkPassword(this.password) && this.password === this.confirmPassword) {
+
+          // Reinit signup failure
+          this.signUpFailed = false;
+
+          // Prepare params
+          var params = {
+            "name": this.pseudo,
+            "login": this.email,
+            "password": this.password
+          };
+
+          // Save context to use it into other context
+          var that = this;
+
+          // Call Ajax WS /api/gambler
+          this.$http.post(
+            '/api/gambler',
+            params
+          ).then(
+            // success
+            function(response) {
+              window.location.href = "/sign_in?alert=register-ok";
+            },
+
+            // error
+            function(response) {
+              that.signUpFailed = true;
+            }
+          );
+          console.log("AJAX GO ");
+          console.log(params);
+        }
+        return false;
+      }
     }
   });
-}
+});
