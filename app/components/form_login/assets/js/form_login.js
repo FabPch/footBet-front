@@ -26,6 +26,10 @@ jQuery(document).ready(function(){
     mounted: function (evt) {
       $('.loader').hide(750);
       this.mounted = true;
+
+      if(getUriParams().alert && getUriParams().alert === "register-ok") {
+        $('#modal-register-ok').modal("show");
+      }
     },
     beforeUpdate: function (evt) {
     },

@@ -52,3 +52,20 @@
 
   </form>
 </div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="modal-register-ok">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>Vous vous êtes bien inscrit !<br>Connectez-vous sans plus tarder...</h3>
+        <div class="col-12">
+            <img src="/assets/img/poutin-success.png" class="rounded w-100" alt="Success">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
