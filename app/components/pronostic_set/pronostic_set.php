@@ -41,11 +41,11 @@
                   <img src="/assets/img/icon-bet-black.svg" class="prediction-icon icon-black" alt="Prediction icon"/>
                   <img src="/assets/img/icon-bet-white.svg" class="prediction-icon icon-white" alt="Prediction icon"/>
                   <span class="prediction-home">{{ pronostics[getFixtureId(fixture)] !== undefined ? pronostics[getFixtureId(fixture)].prono1 : '?' }}</span>
-                  <input type="text" placeholder="?" name="predictionHome" class="col-9"/>
+                  <input type="text" placeholder="?" name="predictionHome" class="col-9" :value="pronostics[getFixtureId(fixture)] !== undefined ? pronostics[getFixtureId(fixture)].prono1 : '?'"/>
                 </div>
                 <div class="col-6">
                   <span class="prediction-away">{{ pronostics[getFixtureId(fixture)] !== undefined ? pronostics[getFixtureId(fixture)].prono2 : '?' }}</span>
-                  <input type="text" placeholder="?" name="predictionAway" class="col-9"/>
+                  <input type="text" placeholder="?" name="predictionAway" class="col-9" :value="pronostics[getFixtureId(fixture)] !== undefined ? pronostics[getFixtureId(fixture)].prono2 : '?'"/>
                 </div>
 
                 <!-- Row match results -->

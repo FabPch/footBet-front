@@ -14,7 +14,7 @@
           <div class="col-sm-10">
               <input type="text" v-on:blur="validPseudo" class="form-control" v-bind:class="{ 'is-invalid': (pseudoValidated === false || signUpFailed === true), 'is-valid': (pseudoValidated === true) }" id="inputPseudo" placeholder="Votre nom d'utilisateur" v-model="pseudo">
               <small id="pseudoHelpBlock" class="form-text text-muted">
-                Nom qui sera affiché aux autres joueurs
+                Nom qui sera visible des autres joueurs
               </small>
               <div class="invalid-feedback" v-show="pseudoValidated === false">
                   Le nom d'utilisateur doit être composé de lettres et chiffres seulement

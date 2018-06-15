@@ -144,37 +144,75 @@ jQuery(document).ready(function(){
           }
         }
 
+        var currentPredictionHome = $('[data-fixture-id='+this.editCard+'] .prediction-home').text();
+        var currentPredictionAway = $('[data-fixture-id='+this.editCard+'] .prediction-away').text();
+
         if(params === {}) {
           return false;
         }
 
-        var that = this;
-        this.$http.post(
-          '/api/pronostic',
-          params
-        ).then(
-          // Success
-          function(response) {
-            console.log(response);
-            that.editCard = '';
-            $('[data-fixture-id='+that.editCard+'] .prediction-home').text(params.prono1);
-            $('[data-fixture-id='+that.editCard+'] .prediction-away').text(params.prono2);
-            $('#alert-pronostic-ok').show();
-            setTimeout(function(){
-              $('#alert-pronostic-ok').hide(750);
-            }, 5000);
-          },
+        var doRequest = "";
+        if(currentPredictionHome === "?") {
+          doRequest = "POST";
+        } else if(currentPredictionHome !== "?") {
+          doRequest = "PUT";
+        }
 
-          // Error
-          function(response) {
-            console.log(response);
-            that.editCard = '';
-            $('#alert-pronostic-ko').show();
-            setTimeout(function(){
-              $('#alert-pronostic-ko').hide(750);
-            }, 5000);
-          }
-        );
+        var that = this;
+        if(doRequest === "POST") {
+          this.$http.post(
+            '/api/pronostic',
+            params
+          ).then(
+            // Success
+            function(response) {
+              $('[data-fixture-id='+that.editCard+'] .prediction-home').text(params.prono1);
+              $('[data-fixture-id='+that.editCard+'] .prediction-away').text(params.prono2);
+              that.editCard = '';
+              $('#alert-pronostic-ok').show();
+              setTimeout(function(){
+                $('#alert-pronostic-ok').hide(750);
+              }, 5000);
+            },
+
+            // Error
+            function(response) {
+              console.log(response);
+              that.editCard = '';
+              $('#alert-pronostic-ko').show();
+              setTimeout(function(){
+                $('#alert-pronostic-ko').hide(750);
+              }, 5000);
+            }
+          );
+        } else if(doRequest === "PUT") {
+          this.$http.put(
+            '/api/pronostic',
+            params
+          ).then(
+            // Success
+            function(response) {
+              $('[data-fixture-id='+that.editCard+'] .prediction-home').text(params.prono1);
+              $('[data-fixture-id='+that.editCard+'] .prediction-away').text(params.prono2);
+              that.editCard = '';
+              $('#alert-pronostic-ok').show();
+              setTimeout(function(){
+                $('#alert-pronostic-ok').hide(750);
+              }, 5000);
+            },
+
+            // Error
+            function(response) {
+              console.log(response);
+              that.editCard = '';
+              $('#alert-pronostic-ko').show();
+              setTimeout(function(){
+                $('#alert-pronostic-ko').hide(750);
+              }, 5000);
+            }
+          );
+        }
+
       },
 
       /**
