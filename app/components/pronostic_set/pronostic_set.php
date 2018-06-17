@@ -15,7 +15,7 @@
           </h5>
           <hr>
         </div>
-        <div class="col-3" v-show="fixture.homeTeamName.length > 0">
+        <div class="col-sm-12 col-md-6 col-lg-3" v-show="fixture.homeTeamName.length > 0">
           <div class="card" :data-fixture-id="getFixtureId(fixture)" v-bind:class="{ edit: (editCard===getFixtureId(fixture)), ended: (fixture.status !== 'TIMED')}">
             <div class="card card-hover" v-on:click="goEdit" :data-fixture-id="getFixtureId(fixture)"></div>
             <div class="card-group-hover rounded-circle" v-on:click="goEdit" :data-fixture-id="getFixtureId(fixture)"></div>

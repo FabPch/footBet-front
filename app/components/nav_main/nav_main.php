@@ -1,4 +1,5 @@
-<div id="cmp-nav-main" class="col-3 panel-darkest main-nav-panel">
+<!-- d-xs-none d-sm-none -->
+<div id="cmp-nav-main" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 panel-darkest main-nav-panel">
   <h1>
     MOTHER
     <span class="red">RUSSIA</span>
