@@ -86,6 +86,11 @@
 .pronostic-set .post-card {
     z-index: 0;
 }
+@media (max-width: 991px) {
+    .pronostic-set .post-card {
+        margin-bottom: 30px;
+    }
+}
 .pronostic-set .post-card .remaining-time {
     width: 50%;
     left: 50%;
