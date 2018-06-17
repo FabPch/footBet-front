@@ -5,11 +5,7 @@ jQuery(document).ready(function(){
     data: {
       mounted: false,
 
-      title: "Mon profil",
-
-      email: "",
-      nickname: "",
-      profilePic: ""
+      gamblers: []
     },
 
     // Default lifecycle events
@@ -20,10 +16,7 @@ jQuery(document).ready(function(){
     beforeMount: function (evt) {
     },
     mounted: function (evt) {
-      this.nickname = lsGetData('userNickname');
-      this.email = lsGetData('userEmail');
-
-      this.loadProfilePic();
+      this.getAllGamblers();
 
       $('.loader').hide(750);
       this.mounted = true;
@@ -39,8 +32,24 @@ jQuery(document).ready(function(){
 
     // Custom methods
     methods: {
-      loadProfilePic: function() {
-        this.profilePic = 'https://www.gravatar.com/avatar/'+md5(this.email);
+      srcProfilePic: function(email) {
+        return 'https://www.gravatar.com/avatar/'+md5(email);
+      },
+
+      getAllGamblers: function() {
+        this.$http.get(
+          '/api/gambler'
+        ).then(
+          // Success
+          function(response) {
+            this.gamblers = response.body;
+          },
+
+          // Error
+          function(response) {
+            console.error(response);
+          }
+        );
       }
     }
   });

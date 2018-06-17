@@ -2,29 +2,17 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Points</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+    <tr v-for="(gambler, iGambler) in gamblers">
+      <th scope="row">{{ iGambler + 1 }}</th>
+      <td><img :src="srcProfilePic(gambler.login)" :alt="'Image de profil de ' + gambler.name" class="rank-profile-pic"/></td>
+      <td>{{ gambler.name }}</td>
+      <td>{{ gambler.gain }}</td>
     </tr>
   </tbody>
 </table>
