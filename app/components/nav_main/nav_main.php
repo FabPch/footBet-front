@@ -7,8 +7,8 @@
       <span aria-hidden="true" class="close" style="display:none;">&times;</span>
     </button>
     <a class="navbar-brand float-right" href="#">
-      Mother
-      <span class="red">Russia</span>
+      MOTHER
+      <span class="red">RUSSIA</span>
     </a>
   </nav>
 
