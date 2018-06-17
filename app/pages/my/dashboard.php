@@ -11,10 +11,10 @@
 
         <div class="row">
 
-          <div class="card col-4">
+          <div class="card col-xs-22 col-sm-12 col-md-12 col-lg-4 col-xl-4">
             <?php new IncComponent("my_account"); ?>
           </div>
-          <div class="col-8">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
             <?php new IncComponent("ranking"); ?>
           </div>
         </div>
