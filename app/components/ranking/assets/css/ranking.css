@@ -1,0 +1,33 @@
+.rank {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 1.5em;
+}
+
+.first-place {
+    background: url(/assets/img/or.jpg) center center;
+    background-size: cover;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 3em;
+}
+
+.second-place {
+    background: url(/assets/img/argent.jpg) center center;
+    background-size: cover;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 3em;
+}
+
+.third-place {
+    background: url(/assets/img/bronze.jpg) center center;
+    background-size: cover;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 3em;
+}

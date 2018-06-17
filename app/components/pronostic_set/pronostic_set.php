@@ -62,6 +62,9 @@
             </div>
           </div>
           <div class="post-card" :data-fixture-id="getFixtureId(fixture)">
+            <div class="text-center match-finished" v-show="fixture.status === 'FINISHED'">
+              {{ pronostics[getFixtureId(fixture)] ? pronostics[getFixtureId(fixture)].gain : '0' }}
+            </div>
             <div class="text-center match-in-play" v-show="fixture.status === 'IN_PLAY'">En cours ...</div>
             <div class="remaining-time text-center" :data-fixture-id="getFixtureId(fixture)" v-show="fixture.status === 'TIMED'">{{ countdownsString[getFixtureId(fixture)] }}</div>
           </div>

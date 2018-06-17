@@ -127,6 +127,14 @@ jQuery(document).ready(function(){
           }
         );
         return false;
+      },
+
+      toggleMenu: function(evt) {
+        evt.preventDefault();
+        $('.main-nav-panel').toggleClass('d-none');
+        $('.nav-mobile .navbar-toggler-icon').toggle();
+        $('.nav-mobile .close').toggle();
+        return false;
       }
     }
   });

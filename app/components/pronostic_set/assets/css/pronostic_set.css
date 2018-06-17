@@ -94,7 +94,8 @@
     border: solid 2px rgba(0,0,0,0.7);
 }
 .pronostic-set .post-card .remaining-time,
-.pronostic-set .post-card .match-in-play {
+.pronostic-set .post-card .match-in-play,
+.pronostic-set .post-card .match-finished {
     width: 50%;
     left: 50%;
     position: absolute;

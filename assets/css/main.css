@@ -4,6 +4,12 @@ html, body {
     width: 100%;
     height: 100%;
 }
+@media (max-width: 991px) {
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+}
 
 body {
     background: url(../img/fifa2018-min.png) center center no-repeat;
@@ -120,6 +126,10 @@ footer {
 .row.full-height, .row.full-height > * {
     height: 100%;
 }
+/*.row.full-height {
+    padding: 0;
+    margin: 0;
+}*/
 
 .jumbotron {
     padding: 10px 20px;
@@ -128,6 +138,11 @@ footer {
 
 .main-container {
     overflow: auto;
+}
+@media (max-width: 991px) {
+    .main-container {
+        padding-top: 70px;
+    }
 }
 
 .panel-darkest, .panel-dark {
@@ -166,7 +181,11 @@ footer {
 }
 
 .loader {
+    position: absolute;
+    z-index: 1000;
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
     background: url(/assets/img/football_loader.gif) no-repeat center center #FFF;
 }
