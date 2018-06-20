@@ -100,7 +100,7 @@ jQuery(document).ready(function(){
        */
       getFixtures: function() {
         this.$http.get(
-          'http://api.football-data.org/v1/competitions/467/fixtures',
+          'https://api.football-data.org/v1/competitions/467/fixtures',
           {headers: {'X-Auth-Token': '8aa99a3f8ed74cd3862fd8282585bc95'}}
         ).then(function(response) {
           this.fixtures = response.body.fixtures;
