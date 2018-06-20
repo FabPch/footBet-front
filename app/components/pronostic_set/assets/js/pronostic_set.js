@@ -80,7 +80,8 @@ jQuery(document).ready(function(){
        */
       getAllTeams: function() {
         this.$http.get(
-          'http://api.football-data.org/v1/competitions/467/teams',
+          '/api/team/mock',
+          //'https://api.football-data.org/v1/competitions/467/teams',
           {headers: {'X-Auth-Token': '8aa99a3f8ed74cd3862fd8282585bc95'}}
         ).then(
           function(response) {
