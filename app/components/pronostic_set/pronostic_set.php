@@ -9,7 +9,7 @@
     <h2>Liste des pronostiques par match</h2>
     <div class="row">
       <template v-for="fixture in fixtures">
-        <div class="col-12" v-show="isNewDate(fixture) && fixture.homeTeamName.length > 0">
+        <div class="col-12" v-if="isNewDate(fixture) && fixture.homeTeamName.length > 0">
           <h5>
             <span>{{ getReadableDate(fixture) }}</span>
           </h5>
