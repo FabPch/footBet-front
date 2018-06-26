@@ -33,7 +33,7 @@ jQuery(document).ready(function(){
     // Custom methods
     methods: {
       srcProfilePic: function(email) {
-        return 'https://www.gravatar.com/avatar/'+md5(email);
+        return 'https://www.gravatar.com/avatar/'+ email;
       },
 
       getAllGamblers: function() {
