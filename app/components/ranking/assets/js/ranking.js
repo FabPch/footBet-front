@@ -42,7 +42,21 @@ jQuery(document).ready(function(){
         ).then(
           // Success
           function(response) {
-            this.gamblers = response.body;
+            var gamblers = response.body;
+
+            var previousGain = null;
+            var currentRank = 0;
+
+            for(var i=0; i<gamblers.length; i++) {
+              if(gamblers[i].gain !== previousGain) {
+                currentRank++;
+                gamblers[i]["rank"] = currentRank;
+              } else {
+                gamblers[i]["rank"] = currentRank;
+              }
+              previousGain = gamblers[i].gain;
+            }
+            this.gamblers = gamblers;
           },
 
           // Error

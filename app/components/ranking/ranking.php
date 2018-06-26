@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <tr v-for="(gambler, iGambler) in gamblers">
-      <th scope="row" class="rank" v-bind:class="{'first-place': (iGambler===0), 'second-place': (iGambler===1), 'third-place': (iGambler===2)}">{{ iGambler + 1 }}</th>
+      <th scope="row" class="rank" v-bind:class="{'first-place': (gambler.rank===1), 'second-place': (gambler.rank===2), 'third-place': (gambler.rank===3)}">{{ gambler.rank }}</th>
       <td class="text-center"><img :src="srcProfilePic(gambler.login)" :alt="'Image de profil de ' + gambler.name" class="rank-profile-pic"/></td>
       <td>{{ gambler.name }}</td>
       <td class="text-center">{{ gambler.gain }}</td>
