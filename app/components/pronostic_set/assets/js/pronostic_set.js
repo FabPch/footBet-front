@@ -56,6 +56,19 @@ jQuery(document).ready(function(){
         console.log(fixtureId);
       },
 
+      /**
+       * toggleDaysPronostics(event)
+       * @param event
+       *
+       * Method binded from frontend
+       * shows or hide day's pronostis
+       */
+      toggleDaysPronostics: function(event) {
+        var dataFixtureDate = $(event.currentTarget).attr('data-fixture-date');
+        $('.card-col[data-fixture-date="' + dataFixtureDate + '"]').toggle();
+        $(event.currentTarget).find('h5 span').toggleClass('opened').toggleClass('closed');
+      },
+
       getPronostics: function() {
         this.$http.get(
           '/api/pronostic'
@@ -118,9 +131,15 @@ jQuery(document).ready(function(){
             }
           }
         }).finally(function(){
+          this.readyToShow = true;
+
           $('[data-toggle="popover"]').popover();
           $('.loader').hide(750);
-          this.readyToShow = true;
+
+          setTimeout(function(){
+            $('.main-container')[0].scrollTo(0,$('.col-today').offset().top);
+          }, 1);
+
         });
       },
 
@@ -395,6 +414,34 @@ jQuery(document).ready(function(){
         var dHour = d.getHours();
         var dMinutes = d.getMinutes().toString().length === 1 ? '0'+d.getMinutes() : d.getMinutes();
         return 'Le ' + dDate + '/' + dMonth + '/' + dYear + ' à ' + d.getHours() + 'h' + dMinutes;
+      },
+
+      /**
+       * isBeforeToday()
+       * @param fixture
+       */
+      isBeforeToday: function(fixture) {
+        var currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        var d = new Date(fixture.date);
+        d.setHours(0, 0, 0, 0);
+
+        return (d < currentDate);
+      },
+
+      /**
+       * isToday()
+       * @param fixture
+       */
+      isToday: function(fixture) {
+        var currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        var d = new Date(fixture.date);
+        d.setHours(0, 0, 0, 0);
+
+        return (d - currentDate === 0) ? true : false;
       }
     }
   });

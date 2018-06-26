@@ -9,13 +9,13 @@
     <h2>Liste des pronostiques par match</h2>
     <div class="row">
       <template v-for="fixture in fixtures">
-        <div class="col-12" v-if="isNewDate(fixture) && fixture.homeTeamName.length > 0">
+        <div class="col-12 card-day-col" v-if="isNewDate(fixture) && fixture.homeTeamName.length > 0" v-on:click="toggleDaysPronostics" :data-fixture-date="fixture.date.split('T')[0]" v-bind:class="{ 'col-today': isToday(fixture)}">
           <h5>
-            <span>{{ getReadableDate(fixture) }}</span>
+            <span v-bind:class="{ closed: isBeforeToday(fixture), opened: !isBeforeToday(fixture)}">{{ getReadableDate(fixture) }}</span>
           </h5>
           <hr>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-3" v-show="fixture.homeTeamName.length > 0">
+        <div class="col-sm-12 col-md-6 col-lg-3 card-col" v-if="fixture.homeTeamName.length > 0" v-show="!isBeforeToday(fixture)" :data-fixture-date="fixture.date.split('T')[0]">
           <div class="card" :data-fixture-id="getFixtureId(fixture)" v-bind:class="{ edit: (editCard===getFixtureId(fixture)), ended: (fixture.status !== 'TIMED')}">
             <div class="card card-hover" v-on:click="goEdit" :data-fixture-id="getFixtureId(fixture)"></div>
             <div class="card-group-hover rounded-circle" v-on:click="goEdit" :data-fixture-id="getFixtureId(fixture)"></div>

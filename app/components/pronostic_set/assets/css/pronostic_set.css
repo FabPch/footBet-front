@@ -5,6 +5,7 @@
     border-radius: 0;
 }
 
+.card-day-col,
 .pronostic-set .card:not(.edit) {
     cursor: pointer;
 }
@@ -168,6 +169,24 @@
     background: rgb(240, 240, 240);
     padding-right: 10px;
 }
+.pronostic-set .col-12 h5 span.opened,
+.pronostic-set .col-12 h5 span.closed {
+    background-repeat: no-repeat;
+    background-position: 94% 3px;
+    background-size: 17px;
+    padding-right: 35px;
+}
+.pronostic-set .col-12 h5 span.opened {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAICSURBVGhD7djLS5RRGMfxqSgqkO4FgkQQBEGLaNEu7EIaJtHtH+gPiIiIiAgqQi3qL4ighQsjNy6CNi7EhZDaBTRaRBBERAQFpd2gvk90Yjj9Gs+M7zvvDDxf+CyU95z3PM44zEzJ8zzP87z824Lz2P37pyZtFz7h5x+n0HTFQwSn0TS14zPiIYIzaPj2oNIQwVk0bHuRMkTQkMPsQzVDBOfQMO1HLUME9vJceB2YgTpgNS6gsGyIWaiD1aKQYTqR5RDBRdStA/gCdZDYBxzBdNnv5nIJudeFr1AHiNkQO2Gtx1Oo65TLyK2DSB3iPXagvLV4BHW9cgWZ143UId5hO1SrMQ61TrmKzDqE1CHeYhsqtRJjUOuVHsy7w0gd4g22IqUVGIXaR+lFzdmrTeoQr2EfoqqpBSNQ+yl9qLqjSB3iFTajlpZjGGpf5TqSO4ZvUBvFXmIT5pMN8wBqf+UG5uw4vkNtEHuBjciipbgPdR/lJv6bPZ1+QC2MPUcbsmwJhqDup8hHZjE+Qi2IPUMr8siGGYS6rxLeOfxtGVL+uaewAXlmf9QBqPvH7PuBfzoJdXHwBOtQjxahH+ocwV0sgMy+4VCLJrEG9cyGuQN1nnuwR65i8TAPsQpFtBC3UH6epCFCJzCB27C3E0VmTx/7wPUY15A8hOd5nud5nueVVSr9As4yy259dqoAAAAAAElFTkSuQmCC);
+}
+.pronostic-set .col-12 h5 span.closed {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIGSURBVGhD7dhNS1RhGIfx6cVKC0MId32DwI+g0KKl65a5cNEmjF5FFDGRFBVrIyJEIBEpUVFWVEgStBGhRR+iD5CrSq9bfGA8/j0vzXkZ4b7gt3Ccc57nHo5nxql5nud5nud5pdeFOfThmD1QcZfxCL27P6WsB7+xvWcBx1FV1/AHYT+3kFh0iOAJTqDs+vEP0f3EDtMNNUSwhDKHuQ41RHATB7IN/oI6oN5znETR3UDcEOYvLmFfZ2G/UAdEreAUiuo21LrKFRzoAdSTldcoYpj7UOspa5CXut1mZ6EOUt7hDPJqBGodZR12FcU2DXWw8gFtaLQsV8NXJA4RmoI6ifIZjQzzEOq8il1OmdeahDqZYq/SOWTJLuUZqPMpX/DfL1iWV+sb2pEmG+Ix1HmUhoYITUCdXPmO84jLhpiHOl75hDz+Dncbh1pE2UAHVHa7XIQ6TvmI3IYIZbmzbOIC6rMhnkI9X7E7YisKaQxqUeUHOmHZEM+gnqfYEHm+R8lGoRZXfuIiXtQ9luQ9Ch8iNAy1CWVLPHaYVZxGqWUZJo23KPLDaGxDUJvKqtIhQoNQm0vrDSofInQPapNJXqFphgjdhdrsYV6i6YYI3YHadFRTDxGybzjU5oOi/1XONfuGQw2xjBYcqQZQP4S9u5fxDUwhXYV9brL/x4/sEJ7neZ7nlVuttgMcDctwX0jEvwAAAABJRU5ErkJggg==);
+}
+
+
+
+
+
 
 .pronostic-set .col-12 hr {
     margin-top: -20px;
@@ -177,7 +196,7 @@
 
 #alert-pronostic-ko,
 #alert-pronostic-ok {
-    position: absolute;
+    position: fixed;
     z-index: 2;
     top: 10px;
     right: 25px;
