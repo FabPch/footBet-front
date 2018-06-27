@@ -60,7 +60,7 @@ jQuery(document).ready(function(){
       isNewDate: function(fixture) {
         var d = new Date(fixture.date);
         var dDay = d.getDay().toString().length === 1 ? '0'+d.getDay() : d.getDay();
-        var dMonth = d.getMonth().toString().length === 1 ? '0'+d.getMonth() : d.getMonth();
+        var dMonth = (d.getMonth()+1).toString().length === 1 ? '0'+(d.getMonth()+1) : (d.getMonth()+1);
         var dYear = d.getFullYear();
 
         var currentDate = dDay + dMonth + dYear;
@@ -95,7 +95,7 @@ jQuery(document).ready(function(){
       getReadableDateTime: function(fixture) {
         var d = new Date(fixture.date);
         var dDate = d.getDate().toString().length === 1 ? '0'+d.getDate() : d.getDate();
-        var dMonth = d.getMonth().toString().length === 1 ? '0'+d.getMonth() : d.getMonth();
+        var dMonth = (d.getMonth()+1).toString().length === 1 ? '0'+(d.getMonth()+1) : (d.getMonth()+1);
         var dYear = d.getFullYear();
 
         var dHour = d.getHours();

@@ -28,11 +28,11 @@
 
                 <!-- Row flags & team names -->
                 <div class="col-6 mb-3">
-                  {{ getTeam(fixture.homeTeamName).code }}<br>
+                  {{ (fixture.homeTeamName.length > 0) ? getTeam(fixture.homeTeamName).code : '?' }}<br>
                   <img :src="getTeamFlag(fixture.homeTeamName)" style="width: 50px;"/>
                 </div>
                 <div class="col-6 mb-3">
-                  {{ getTeam(fixture.awayTeamName).code }}<br>
+                  {{ (fixture.awayTeamName.length > 0) ? getTeam(fixture.awayTeamName).code : '?' }}<br>
                   <img :src="getTeamFlag(fixture.awayTeamName)" style="width: 50px;"/>
                 </div>
 

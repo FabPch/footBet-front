@@ -236,6 +236,28 @@ jQuery(document).ready(function(){
       },
 
       /**
+       * isThereAnyMatch()
+       * @param fixture
+       * @returns {boolean}
+       *
+       * Returns if there is a match for a date
+       */
+      isThereAnyMatch: function(fixture) {
+        var newMatch = false;
+        var iFixture = this.fixtures.indexOf(fixture);
+        for(var i=iFixture; i<iFixture+5; i++) {
+          var currentFixture = this.fixtures[i];
+          if(currentFixture && this.isNewDate(currentFixture)) {
+            break;
+          } else if(currentFixture && currentFixture.homeTeamName.length > 0) {
+            newMatch = true;
+          }
+        }
+        return true;
+        //return newMatch;
+      },
+
+      /**
        * isNewDate()
        * @param fixture
        * @returns {boolean}
@@ -245,7 +267,7 @@ jQuery(document).ready(function(){
       isNewDate: function(fixture) {
         var d = new Date(fixture.date);
         var dDay = d.getDay().toString().length === 1 ? '0'+d.getDay() : d.getDay();
-        var dMonth = d.getMonth().toString().length === 1 ? '0'+d.getMonth() : d.getMonth();
+        var dMonth = (d.getMonth()+1).toString().length === 1 ? '0'+(d.getMonth()+1) : (d.getMonth()+1);
         var dYear = d.getFullYear();
 
         var currentDate = dDay + dMonth + dYear;
@@ -408,7 +430,7 @@ jQuery(document).ready(function(){
       getReadableDateTime: function(fixture) {
         var d = new Date(fixture.date);
         var dDate = d.getDate().toString().length === 1 ? '0'+d.getDate() : d.getDate();
-        var dMonth = d.getMonth().toString().length === 1 ? '0'+d.getMonth() : d.getMonth();
+        var dMonth = (d.getMonth()+1).toString().length === 1 ? '0'+(d.getMonth()+1) : (d.getMonth()+1);
         var dYear = d.getFullYear();
 
         var dHour = d.getHours();
