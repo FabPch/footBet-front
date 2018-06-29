@@ -21,9 +21,9 @@ jQuery(document).ready(function(){
     created: function(evt) {},
     beforeMount: function(evt) {},
     mounted: function(evt) {
-      window.ddata = this; // TODO : remove after testing
       this.getAllTeams();
       this.getPronostics();
+      // this.getFixturesV2();
 
       var teamPronoCounter = 0;
       var that = this;
@@ -113,7 +113,8 @@ jQuery(document).ready(function(){
        */
       getFixtures: function() {
         this.$http.get(
-          'https://api.football-data.org/v1/competitions/467/fixtures',
+            '/api/game/live',
+            //'https://api.football-data.org/v1/competitions/467/fixtures',
           {headers: {'X-Auth-Token': '8aa99a3f8ed74cd3862fd8282585bc95'}}
         ).then(function(response) {
           this.fixtures = response.body.fixtures;
@@ -140,6 +141,30 @@ jQuery(document).ready(function(){
             $('.main-container')[0].scrollTo(0,$('.col-today').offset().top);
           }, 1);
 
+        });
+      },
+
+      getFixturesV2: function() {
+        var that = this;
+        this.$http.get(
+          'https://fr.fifa.com/live/17/season/254645/_editorial_elements'
+        ).then(function(response) {
+          var fixtures = response.body.matches;
+          for(var i=0; i<fixtures.length; i++) {
+            var fixture = fixtures[i];
+            var fixtureId = fixture.idMatch;
+            that.getFixture(fixtureId);
+          }
+        });
+      },
+
+      getFixture: function(fixtureId) {
+        this.$http.get(
+          'https://api.fifa.com/api/v1/live/football/17/254645/275073/' + fixtureId + '?language=fr-FR'
+        ).then(function(response) {
+          console.log(response.body);
+        }).finally(function() {
+          //debugger;
         });
       },
 
